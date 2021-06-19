@@ -1,3 +1,5 @@
+import 'package:Grabzo/model/ProfilBean.dart';
+import 'package:Grabzo/service/Profile.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 import 'package:Grabzo/Components/custom_button.dart';
@@ -12,8 +14,30 @@ class MyAccount extends StatefulWidget {
 }
 
 class _MyAccountState extends State<MyAccount> {
+  var _getProfile;
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getProfile = Profile().getProfile();
+  }
+
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: _getProfile,
+        builder: (BuildContext context, AsyncSnapshot<ProfileBean> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            if (snapshot.hasError)
+              return Center(child: Text('Error: ${snapshot.error}'));
+            else
+              return scaffold(context, snapshot.data);
+          }
+        });
+  }
+
+  Scaffold scaffold(BuildContext context, ProfileBean data) {
     return Scaffold(
       backgroundColor: Color(0xFFFAFAFA),
       appBar: AppBar(
@@ -74,7 +98,7 @@ class _MyAccountState extends State<MyAccount> {
                           fontSize: 15, letterSpacing: 1, color: Colors.black),
                     ),
                     subtitle: Text(
-                      'NAME',
+                      data.name,
                       style: Theme.of(context).textTheme.headline6.copyWith(
                           fontSize: 16, letterSpacing: 1, color: Colors.grey),
                     ),
@@ -86,7 +110,7 @@ class _MyAccountState extends State<MyAccount> {
                           fontSize: 15, letterSpacing: 1, color: Colors.black),
                     ),
                     subtitle: Text(
-                      'MAIL',
+                      data.email,
                       style: Theme.of(context).textTheme.headline6.copyWith(
                           fontSize: 16, letterSpacing: 1, color: Colors.grey),
                     ),
@@ -98,7 +122,7 @@ class _MyAccountState extends State<MyAccount> {
                           fontSize: 15, letterSpacing: 1, color: Colors.black),
                     ),
                     subtitle: Text(
-                      'NUMBER',
+                      data.phoneNumber.toString(),
                       style: Theme.of(context).textTheme.headline6.copyWith(
                           fontSize: 16, letterSpacing: 1, color: Colors.grey),
                     ),
@@ -143,7 +167,7 @@ class _MyAccountState extends State<MyAccount> {
                       ],
                     ),
                     subtitle: Text(
-                      '1124, Patestine Street, Jackson Tower,\nNear City Garden, New York, USA',
+                      "${data.address.street1}, ${data.address.street2}, \n${data.address.landmark}, ${data.address.city} ${data.address.state}, ${data.address.country}, ${data.address.pin}",
                       style: TextStyle(fontSize: 14),
                     ),
                   ),

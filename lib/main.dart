@@ -1,3 +1,4 @@
+import 'package:Grabzo/pages/MyProfile.dart';
 import 'package:flutter/material.dart';
 
 import 'package:Grabzo/pages/CartTab.dart';
@@ -10,5 +11,5 @@ import 'package:Grabzo/pages/SignUpPage.dart';
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Roboto', hintColor: Color(0xffffffff)),
-      home: SignUpPage(),
+      home: MyAccount(),
     ));
