@@ -1,7 +1,7 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Components/custom_button.dart';
-import 'package:flutter_app/Components/entry_field.dart';
+import 'package:Grabzo/Components/custom_button.dart';
+import 'package:Grabzo/Components/entry_field.dart';
 // import 'package:flutter_app/Locale/locales.dart';
 
 class SendToBank extends StatefulWidget {
@@ -53,7 +53,7 @@ class _SendToBankState extends State<SendToBank> {
                   padding: const EdgeInsets.symmetric(
                       horizontal: 18.0, vertical: 12),
                   child: Text(
-                   " locale.provideBankDetails",
+                    " locale.provideBankDetails",
                     style: Theme.of(context)
                         .textTheme
                         .subtitle2
@@ -74,7 +74,7 @@ class _SendToBankState extends State<SendToBank> {
                     ..text = 'Bank of New York',
                 ),
                 EntryField(
-                  label:"locale.branchCode",
+                  label: "locale.branchCode",
                   labelFontSize: 15,
                   labelFontWeight: FontWeight.w400,
                   controller: TextEditingController()..text = 'NYC123456',

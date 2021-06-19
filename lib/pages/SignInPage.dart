@@ -1,8 +1,14 @@
+import 'package:Grabzo/pages/MyProfile.dart';
+import 'package:Grabzo/pages/StoreTab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_app/animation/ScaleRoute.dart';
-import 'package:flutter_app/pages/SignUpPage.dart';
+import 'package:Grabzo/animation/ScaleRoute.dart';
+import 'package:Grabzo/pages/SignUpPage.dart';
+import 'package:Grabzo/service/Profile.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -15,6 +21,9 @@ class _SignInPageState extends State<SignInPage> {
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
     double defaultIconSize = 17;
+
+    TextEditingController _email = new TextEditingController();
+    TextEditingController _password = new TextEditingController();
 
     return Scaffold(
       body: Container(
@@ -40,8 +49,8 @@ class _SignInPageState extends State<SignInPage> {
             ),
             Flexible(
               flex: 8,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: ListView(
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     width: 230,
@@ -63,6 +72,7 @@ class _SignInPageState extends State<SignInPage> {
                     height: 15,
                   ),
                   TextField(
+                    controller: _email,
                     showCursor: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -90,6 +100,7 @@ class _SignInPageState extends State<SignInPage> {
                     height: 15,
                   ),
                   TextField(
+                    controller: _password,
                     showCursor: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -138,7 +149,7 @@ class _SignInPageState extends State<SignInPage> {
                   SizedBox(
                     height: 15,
                   ),
-                  SignInButtonWidget(),
+                  SignInButtonWidget(_email, _password),
                   SizedBox(
                     height: 2,
                   ),
@@ -167,13 +178,13 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     InkWell(
                       onTap: () => {
-                      Navigator.push(context, ScaleRoute(page: SignUpPage()))
+                        Navigator.push(context, ScaleRoute(page: SignUpPage()))
                       },
                       child: Container(
                         child: Text(
                           "Sign Up",
                           style: TextStyle(
-                            color: Color( 0xff48ac02 ),
+                            color: Color(0xff48ac02),
                             fontFamily: defaultFontFamily,
                             fontSize: defaultFontSize,
                             fontStyle: FontStyle.normal,
@@ -193,6 +204,10 @@ class _SignInPageState extends State<SignInPage> {
 }
 
 class SignInButtonWidget extends StatelessWidget {
+  TextEditingController email;
+  TextEditingController password;
+
+  SignInButtonWidget(this.email, this.password);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -208,7 +223,7 @@ class SignInButtonWidget extends StatelessWidget {
           ),
         ],
         gradient: new LinearGradient(
-            colors: [Color( 0xff4be343 ), Color( 0xff87d437 )],
+            colors: [Color(0xff4be343), Color(0xff87d437)],
             begin: const FractionalOffset(0.2, 0.2),
             end: const FractionalOffset(1.0, 1.0),
             stops: [0.0, 1.0],
@@ -216,7 +231,7 @@ class SignInButtonWidget extends StatelessWidget {
       ),
       child: MaterialButton(
           highlightColor: Colors.transparent,
-          splashColor: Color( 0xffffffff ),
+          splashColor: Color(0xffffffff),
           //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
           child: Padding(
             padding:
@@ -229,7 +244,29 @@ class SignInButtonWidget extends StatelessWidget {
                   fontFamily: "WorkSansBold"),
             ),
           ),
-          onPressed: () => {}),
+          onPressed: () async {
+            SharedPreferences pref;
+            Profile().signIn(email.text, password.text).then((value) async => {
+                  (null != value)
+                      ? {
+                          pref = await SharedPreferences.getInstance(),
+                          pref.setString('token', value),
+                          Navigator.pushReplacement(
+                              context,
+                              PageTransition(
+                                  type: PageTransitionType.rightToLeft,
+                                  child: StoreTab())),
+                        }
+                      : {
+                          Fluttertoast.showToast(
+                              msg: "Wrong Username Or Password",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white)
+                        }
+                });
+          }),
     );
   }
 }

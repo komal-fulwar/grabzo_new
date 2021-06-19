@@ -1,11 +1,11 @@
 import 'package:animation_wrappers/Animations/faded_translation_animation.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_app/Components/custom_button.dart';
-import 'package:flutter_app/Components/entry_field.dart';
+import 'package:Grabzo/Components/custom_button.dart';
+import 'package:Grabzo/Components/entry_field.dart';
 
-import 'package:flutter_app/Theme2/colors.dart';
-import 'package:flutter_app/pages/MyProfile.dart';
+import 'package:Grabzo/Theme2/colors.dart';
+import 'package:Grabzo/pages/MyProfile.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -15,7 +15,6 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
@@ -27,8 +26,7 @@ class _EditProfileState extends State<EditProfile> {
           elevation: 0,
           title: Text("EDIT PROFILE",
               style: TextStyle(
-                color: Color( 0xff000000 ),
-
+                color: Color(0xff000000),
               )),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
@@ -41,19 +39,14 @@ class _EditProfileState extends State<EditProfile> {
             Spacer(
               flex: 1,
             ),
-
             EntryField(
-              label:" FullName",
-
+              label: " FullName",
             ),
             EntryField(
               label: "EmailAddress",
-
             ),
-
             EntryField(
               label: "PhoneNumber",
-
             ),
             Spacer(
               flex: 5,
@@ -63,7 +56,7 @@ class _EditProfileState extends State<EditProfile> {
               height: 60,
               color: kMainColor,
               child: Padding(
-                padding: const EdgeInsets.only(top:20.0),
+                padding: const EdgeInsets.only(top: 20.0),
                 child: Text(
                   "Save",
                   textAlign: TextAlign.center,

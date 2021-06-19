@@ -2,7 +2,7 @@ import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 // import 'package:flutter_app/Locale/locales.dart';
-import 'package:flutter_app/Routes/routes.dart';
+import 'package:Grabzo/Routes/routes.dart';
 
 Drawer buildDrawer(BuildContext context) {
   // var locale = AppLocalizations.of(context);
@@ -28,7 +28,7 @@ Drawer buildDrawer(BuildContext context) {
                     .copyWith(fontSize: 22, letterSpacing: 0.5),
               ),
             ),
-            buildListTile(context, Icons.shopping_cart," locale.myOrders",
+            buildListTile(context, Icons.shopping_cart, " locale.myOrders",
                 PageRoutes.newOrdersDrawer),
             buildListTile(context, Icons.insert_chart, "locale.insight",
                 PageRoutes.insight),

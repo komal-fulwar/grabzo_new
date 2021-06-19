@@ -1,10 +1,10 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Components/custom_button.dart';
-import 'package:flutter_app/Components/drawer.dart';
-import 'package:flutter_app/Components/entry_field.dart';
-import 'package:flutter_app/Theme2/colors.dart';
-import 'package:flutter_app/pages/EditProfile.dart';
+import 'package:Grabzo/Components/custom_button.dart';
+import 'package:Grabzo/Components/drawer.dart';
+import 'package:Grabzo/Components/entry_field.dart';
+import 'package:Grabzo/Theme2/colors.dart';
+import 'package:Grabzo/pages/EditProfile.dart';
 
 class MyAccount extends StatefulWidget {
   @override
@@ -14,7 +14,6 @@ class MyAccount extends StatefulWidget {
 class _MyAccountState extends State<MyAccount> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Color(0xFFFAFAFA),
       appBar: AppBar(
@@ -27,8 +26,7 @@ class _MyAccountState extends State<MyAccount> {
           elevation: 0,
           title: Text("MY PROFILE",
               style: TextStyle(
-                color: Color( 0xff000000 ),
-
+                color: Color(0xff000000),
               )),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
@@ -60,8 +58,7 @@ class _MyAccountState extends State<MyAccount> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                EditProfile(),
+                            builder: (context) => EditProfile(),
                           ),
                         );
                       },
@@ -74,46 +71,37 @@ class _MyAccountState extends State<MyAccount> {
                     title: Text(
                       "Full Name",
                       style: Theme.of(context).textTheme.headline6.copyWith(
-                          fontSize: 15,
-                          letterSpacing: 1,
-                          color: Colors.black),
+                          fontSize: 15, letterSpacing: 1, color: Colors.black),
                     ),
-                    subtitle: Text('NAME',
-                        style: Theme.of(context).textTheme.headline6.copyWith(
-                        fontSize: 16,
-                        letterSpacing: 1,
-                        color: Colors.grey),),
-
+                    subtitle: Text(
+                      'NAME',
+                      style: Theme.of(context).textTheme.headline6.copyWith(
+                          fontSize: 16, letterSpacing: 1, color: Colors.grey),
+                    ),
                   ),
                   ListTile(
                     title: Text(
                       "Email Address",
                       style: Theme.of(context).textTheme.headline6.copyWith(
-                          fontSize: 15,
-                          letterSpacing: 1,
-                          color: Colors.black),
+                          fontSize: 15, letterSpacing: 1, color: Colors.black),
                     ),
-                    subtitle: Text('MAIL',
+                    subtitle: Text(
+                      'MAIL',
                       style: Theme.of(context).textTheme.headline6.copyWith(
-                          fontSize: 16,
-                          letterSpacing: 1,
-                          color: Colors.grey),),
-
+                          fontSize: 16, letterSpacing: 1, color: Colors.grey),
+                    ),
                   ),
                   ListTile(
                     title: Text(
                       "Phone",
                       style: Theme.of(context).textTheme.headline6.copyWith(
-                          fontSize: 15,
-                          letterSpacing: 1,
-                          color: Colors.black),
+                          fontSize: 15, letterSpacing: 1, color: Colors.black),
                     ),
-                    subtitle: Text('NUMBER',
+                    subtitle: Text(
+                      'NUMBER',
                       style: Theme.of(context).textTheme.headline6.copyWith(
-                          fontSize: 16,
-                          letterSpacing: 1,
-                          color: Colors.grey),),
-
+                          fontSize: 16, letterSpacing: 1, color: Colors.grey),
+                    ),
                   ),
                 ],
               ),
@@ -145,8 +133,7 @@ class _MyAccountState extends State<MyAccount> {
                     contentPadding: EdgeInsets.symmetric(horizontal: 4),
                     title: Row(
                       children: [
-                        Text('Home'
-                            ),
+                        Text('Home'),
                         Spacer(),
                         IconButton(
                           icon: const Icon(Icons.edit),
@@ -160,8 +147,6 @@ class _MyAccountState extends State<MyAccount> {
                       style: TextStyle(fontSize: 14),
                     ),
                   ),
-
-
                 ],
               ),
             ),
@@ -178,6 +163,4 @@ class _MyAccountState extends State<MyAccount> {
       ),
     );
   }
-
-
 }

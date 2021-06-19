@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_app/Drawer/contact_us.dart';
 
 // import 'package:flutter_app/Drawer/select_language.dart';
-import 'package:flutter_app/Pages/Login/sign_up.dart';
-import 'package:flutter_app/Pages/Other/add_address.dart';
-import 'package:flutter_app/Pages/Other/edit_item.dart';
-import 'package:flutter_app/Pages/Other/reviews.dart';
-import 'package:flutter_app/Pages/Other/send_to_bank.dart';
+import 'package:Grabzo/Pages/Login/sign_up.dart';
+import 'package:Grabzo/Pages/Other/add_address.dart';
+import 'package:Grabzo/Pages/Other/edit_item.dart';
+import 'package:Grabzo/Pages/Other/reviews.dart';
+import 'package:Grabzo/Pages/Other/send_to_bank.dart';
 
 class PageRoutes {
   static const String signUp = 'sign_up';

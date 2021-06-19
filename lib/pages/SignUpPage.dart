@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/animation/ScaleRoute.dart';
-import 'package:flutter_app/pages/SignInPage.dart';
+import 'package:Grabzo/animation/ScaleRoute.dart';
+import 'package:Grabzo/pages/SignInPage.dart';
+import 'package:Grabzo/service/Profile.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:page_transition/page_transition.dart';
+
+import 'SignInPage.dart';
 
 class SignUpPage extends StatelessWidget {
   @override
@@ -9,6 +14,12 @@ class SignUpPage extends StatelessWidget {
     String defaultFontFamily = 'Roboto-Light.ttf';
     double defaultFontSize = 14;
     double defaultIconSize = 17;
+
+    TextEditingController _firstName = new TextEditingController();
+    TextEditingController _lastName = new TextEditingController();
+    TextEditingController _number = new TextEditingController();
+    TextEditingController _email = new TextEditingController();
+    TextEditingController _password = new TextEditingController();
 
     return Scaffold(
       body: Container(
@@ -19,23 +30,9 @@ class SignUpPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Flexible(
-              flex: 1,
-              child: InkWell(
-                child: Container(
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Icon(Icons.close),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-            ),
-            Flexible(
               flex: 15,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: ListView(
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
                     width: 230,
@@ -61,6 +58,7 @@ class SignUpPage extends StatelessWidget {
                       Flexible(
                         flex: 1,
                         child: TextField(
+                          controller: _firstName,
                           showCursor: true,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -88,6 +86,7 @@ class SignUpPage extends StatelessWidget {
                       Flexible(
                         flex: 1,
                         child: TextField(
+                          controller: _lastName,
                           showCursor: true,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(
@@ -99,7 +98,7 @@ class SignUpPage extends StatelessWidget {
                               ),
                             ),
                             filled: true,
-                            fillColor: Color( 0xFFF2F3F5 ),
+                            fillColor: Color(0xFFF2F3F5),
                             hintStyle: TextStyle(
                               color: Color(0xFF666666),
                               fontFamily: defaultFontFamily,
@@ -115,6 +114,7 @@ class SignUpPage extends StatelessWidget {
                     height: 15,
                   ),
                   TextField(
+                    controller: _number,
                     showCursor: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -142,6 +142,7 @@ class SignUpPage extends StatelessWidget {
                     height: 15,
                   ),
                   TextField(
+                    controller: _email,
                     showCursor: true,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
@@ -164,6 +165,35 @@ class SignUpPage extends StatelessWidget {
                         fontSize: defaultFontSize,
                       ),
                       hintText: "Email Address",
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  TextField(
+                    controller: _password,
+                    showCursor: true,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(
+                          width: 0,
+                          style: BorderStyle.none,
+                        ),
+                      ),
+                      filled: true,
+                      prefixIcon: Icon(
+                        Icons.lock_outline,
+                        color: Color(0xFF666666),
+                        size: defaultIconSize,
+                      ),
+                      fillColor: Color(0xFFF2F3F5),
+                      hintStyle: TextStyle(
+                        color: Color(0xFF666666),
+                        fontFamily: defaultFontFamily,
+                        fontSize: defaultFontSize,
+                      ),
+                      hintText: "Password",
                     ),
                   ),
                   SizedBox(
@@ -193,7 +223,8 @@ class SignUpPage extends StatelessWidget {
                   SizedBox(
                     height: 15,
                   ),
-                  SignInButtonWidget(),
+                  SignInButtonWidget(
+                      _firstName, _lastName, _number, _email, _password),
                   SizedBox(
                     height: 10,
                   ),
@@ -228,7 +259,7 @@ class SignUpPage extends StatelessWidget {
                         child: Text(
                           "Sign In",
                           style: TextStyle(
-                            color: Color( 0xff48ac02 ),
+                            color: Color(0xff48ac02),
                             fontFamily: defaultFontFamily,
                             fontSize: defaultFontSize,
                             fontStyle: FontStyle.normal,
@@ -248,8 +279,17 @@ class SignUpPage extends StatelessWidget {
 }
 
 class SignInButtonWidget extends StatelessWidget {
+  TextEditingController firstName;
+  TextEditingController lastName;
+  TextEditingController number;
+  TextEditingController email;
+  TextEditingController password;
+  SignInButtonWidget(
+      this.firstName, this.lastName, this.number, this.email, this.password);
+
   @override
   Widget build(BuildContext context) {
+    String name;
     return Container(
       width: double.infinity,
       decoration: new BoxDecoration(
@@ -263,7 +303,7 @@ class SignInButtonWidget extends StatelessWidget {
           ),
         ],
         gradient: new LinearGradient(
-            colors: [Color( 0xff4be343 ), Color( 0xff87d437 )],
+            colors: [Color(0xff4be343), Color(0xff87d437)],
             begin: const FractionalOffset(0.2, 0.2),
             end: const FractionalOffset(1.0, 1.0),
             stops: [0.0, 1.0],
@@ -271,7 +311,7 @@ class SignInButtonWidget extends StatelessWidget {
       ),
       child: MaterialButton(
           highlightColor: Colors.transparent,
-          splashColor: Color( 0xffffffff ),
+          splashColor: Color(0xffffffff),
           //shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5.0))),
           child: Padding(
             padding:
@@ -284,7 +324,20 @@ class SignInButtonWidget extends StatelessWidget {
                   fontFamily: "WorkSansBold"),
             ),
           ),
-          onPressed: () => {}),
+          onPressed: () => {
+                name = firstName.text + " " + lastName.text,
+                Profile()
+                    .register(name, email.text, number.text, password.text)
+                    .then((value) => {
+                          (value)
+                              ? Navigator.pushReplacement(
+                                  context,
+                                  PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      child: SignInPage()))
+                              : print("false return hua")
+                        })
+              }),
     );
   }
 }

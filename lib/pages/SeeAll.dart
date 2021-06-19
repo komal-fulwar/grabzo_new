@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/animation/RotationRoute.dart';
-import 'package:flutter_app/animation/ScaleRoute.dart';
-import 'package:flutter_app/pages/CartTab.dart';
-import 'package:flutter_app/pages/ProductInfo.dart';
-import 'package:flutter_app/pages/SeeAll.dart';
+import 'package:Grabzo/animation/RotationRoute.dart';
+import 'package:Grabzo/animation/ScaleRoute.dart';
+import 'package:Grabzo/pages/CartTab.dart';
+import 'package:Grabzo/pages/ProductInfo.dart';
+import 'package:Grabzo/pages/SeeAll.dart';
 
 class SeeAll extends StatefulWidget {
   @override
@@ -25,9 +25,8 @@ class _SeeAllState extends State<SeeAll> {
           elevation: 0,
           title: Text("All Items",
               style: TextStyle(
-                  color: Color( 0xff000000 ),
-
-                  )),
+                color: Color(0xff000000),
+              )),
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
           centerTitle: true),

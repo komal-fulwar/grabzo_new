@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/animation/RotationRoute.dart';
-import 'package:flutter_app/animation/ScaleRoute.dart';
-import 'package:flutter_app/pages/CartTab.dart';
+import 'package:Grabzo/animation/RotationRoute.dart';
+import 'package:Grabzo/animation/ScaleRoute.dart';
+import 'package:Grabzo/pages/CartTab.dart';
 
-import 'package:flutter_app/pages/ProductInfo.dart';
-import 'package:flutter_app/pages/SeeAll.dart';
+import 'package:Grabzo/pages/ProductInfo.dart';
+import 'package:Grabzo/pages/SeeAll.dart';
 
 class PopularFoodsWidget extends StatefulWidget {
   @override
@@ -40,7 +40,6 @@ class PopularFoodTiles extends StatelessWidget {
       {Key key,
       @required this.name,
       @required this.imageUrl,
-
       @required this.price,
       @required this.slug})
       : super(key: key);
@@ -118,7 +117,7 @@ class PopularFoodTiles extends StatelessWidget {
                                   ]),
                               child: Icon(
                                 Icons.favorite,
-                                color: Color( 0xfffb3132 ),
+                                color: Color(0xfffb3132),
                                 size: 16,
                               ),
                             ),
@@ -143,7 +142,6 @@ class PopularFoodTiles extends StatelessWidget {
                   ),
                 )),
           ),
-
         ],
       ),
     );
@@ -162,24 +160,26 @@ class PopularFoodTitle extends StatelessWidget {
             "Popluar Foods",
             style: TextStyle(
                 fontSize: 20,
-                color: Color( 0xff000000 ),
+                color: Color(0xff000000),
                 fontWeight: FontWeight.w400),
           ),
           InkWell(
-            child: Text("View All",
+            child: Text(
+              "View All",
               style: TextStyle(
-                  fontSize: 16, color: Color(0xFF6e6e71), fontWeight: FontWeight.w100),),
+                  fontSize: 16,
+                  color: Color(0xFF6e6e71),
+                  fontWeight: FontWeight.w100),
+            ),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      SeeAll(),
+                  builder: (context) => SeeAll(),
                 ),
               );
             },
           )
-
         ],
       ),
     );
@@ -195,26 +195,19 @@ class PopularFoodItems extends StatelessWidget {
         PopularFoodTiles(
             name: "Fried Egg",
             imageUrl: "ic_popular_food_1",
-
             price: '15.06',
             slug: "fried_egg"),
         PopularFoodTiles(
             name: "Mixed Vegetable",
             imageUrl: "ic_popular_food_3",
-
             price: "17.03",
             slug: ""),
         PopularFoodTiles(
             name: "Fried Egg",
             imageUrl: "ic_popular_food_1",
-
             price: '15.06',
             slug: "fried_egg"),
-
-
       ],
     );
   }
 }
-
-
