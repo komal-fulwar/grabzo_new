@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Grabzo/animation/ScaleRoute.dart';
 import 'package:Grabzo/pages/CartTab.dart';
 import 'package:Grabzo/pages/ProfileTab.dart';
-import 'package:Grabzo/pages/SignInPage.dart';
 import 'package:Grabzo/pages/StoreTab.dart';
-import 'package:Grabzo/widgets/BestFoodWidget.dart';
-import 'package:Grabzo/widgets/BottomNavBarWidget.dart';
-import 'package:Grabzo/widgets/PopularFoodsWidget.dart';
-import 'package:Grabzo/widgets/SearchWidget.dart';
-import 'package:Grabzo/widgets/TopMenus.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {

@@ -11,5 +11,5 @@ import 'package:Grabzo/pages/SignUpPage.dart';
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Roboto', hintColor: Color(0xffffffff)),
-      home: MyAccount(),
+      home: SignInPage(),
     ));
