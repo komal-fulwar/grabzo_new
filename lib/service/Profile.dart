@@ -55,4 +55,31 @@ class Profile {
       return null;
     }
   }
+
+  Future<bool> updateProfile(
+      String name, String email, String number, String password) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String url = Constants.apiUrl + "user/profile/update";
+    Map<String, String> headers = {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": "Bearer $token"
+    };
+
+    String json = """{ "email": "$email",
+                                    "name": "$name",
+                                    "phone_number": $number,
+                                    "password": "$password"
+                                  
+                              }""";
+
+    Response response = await patch(url, headers: headers, body: json);
+    if (response.statusCode == 200) // check response number
+    {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

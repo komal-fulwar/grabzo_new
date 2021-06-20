@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:Grabzo/Components/custom_button.dart';
 import 'package:Grabzo/Theme2/colors.dart';
 import 'package:Grabzo/pages/CartTab.dart';
-import 'package:Grabzo/pages/MyProfile.dart';
+import 'package:Grabzo/pages/MyAccount.dart';
 import 'package:Grabzo/pages/SeeAll.dart';
 import 'package:Grabzo/pages/StoreTab.dart';
 import 'package:Grabzo/pages/profile_menu.dart';

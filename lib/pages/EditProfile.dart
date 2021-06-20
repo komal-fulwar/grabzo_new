@@ -1,11 +1,16 @@
-import 'package:animation_wrappers/Animations/faded_translation_animation.dart';
+import 'package:Grabzo/pages/HomePage.dart';
+import 'package:Grabzo/pages/MyAccount.dart';
+import 'package:Grabzo/service/Profile.dart';
+import 'package:Grabzo/constant/colors.dart';
+import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-
 import 'package:Grabzo/Components/custom_button.dart';
+import 'package:Grabzo/Components/drawer.dart';
 import 'package:Grabzo/Components/entry_field.dart';
-
-import 'package:Grabzo/Theme2/colors.dart';
-import 'package:Grabzo/pages/MyProfile.dart';
+// import 'package:groshop/Locale/locales.dart';
+import 'package:Grabzo/Pages/Other/add_address.dart';
+import 'package:Grabzo/constant/colours.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class EditProfile extends StatefulWidget {
   @override
@@ -15,57 +20,185 @@ class EditProfile extends StatefulWidget {
 class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
+    TextEditingController _email = new TextEditingController();
+    TextEditingController _name = new TextEditingController();
+    TextEditingController _number = new TextEditingController();
+    TextEditingController _password = new TextEditingController();
+
+    // var locale = AppLocalizations.of(context);
     return Scaffold(
+      // drawer: buildDrawer(context),
       appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-          elevation: 0,
-          title: Text("EDIT PROFILE",
-              style: TextStyle(
-                color: Color(0xff000000),
-              )),
-          backgroundColor: Colors.white,
-          iconTheme: IconThemeData(color: Colors.black),
-          centerTitle: true),
+        title: Text(
+          "Edit Profile",
+        ),
+        leading: BackButton(
+          color: darkText,
+        ),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: primaryColor,
+      ),
       body: FadedSlideAnimation(
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Spacer(
-              flex: 1,
-            ),
-            EntryField(
-              label: " FullName",
-            ),
-            EntryField(
-              label: "EmailAddress",
-            ),
-            EntryField(
-              label: "PhoneNumber",
-            ),
-            Spacer(
-              flex: 5,
-            ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 60,
-              color: kMainColor,
+        ListView(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Padding(
-                padding: const EdgeInsets.only(top: 20.0),
-                child: Text(
-                  "Save",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600),
+                padding: const EdgeInsets.all(0.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Edit Profile",
+                      style: Theme.of(context).textTheme.headline6.copyWith(
+                          fontSize: 16,
+                          letterSpacing: 1,
+                          color: Color(0xffa9a9a9)),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    TextFormField(
+                      controller: _name,
+                      cursorColor: Theme.of(context).cursorColor,
+                      decoration: InputDecoration(
+                        labelText: 'Full Name',
+                        labelStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                        enabledBorder: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: primaryColor),
+                        ),
+                        focusedBorder: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: highlightColor),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: _email,
+                      cursorColor: Theme.of(context).cursorColor,
+                      decoration: InputDecoration(
+                        labelText: 'Email Address',
+                        labelStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                        enabledBorder: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: primaryColor),
+                        ),
+                        focusedBorder: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: highlightColor),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    TextFormField(
+                      controller: _number,
+                      cursorColor: Theme.of(context).cursorColor,
+                      decoration: InputDecoration(
+                        labelText: 'Phone Number',
+                        labelStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                        enabledBorder: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: primaryColor),
+                        ),
+                        focusedBorder: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: highlightColor),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    TextFormField(
+                      controller: _password,
+                      cursorColor: Theme.of(context).cursorColor,
+                      decoration: InputDecoration(
+                        labelText: 'Password',
+                        labelStyle: TextStyle(
+                          color: Colors.grey,
+                        ),
+                        enabledBorder: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: primaryColor),
+                        ),
+                        focusedBorder: new OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(15.0),
+                          borderSide: BorderSide(color: highlightColor),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                  ],
                 ),
               ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                OutlinedButton(
+                  child: Text('Save Changes'),
+                  style: OutlinedButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: primaryColor,
+                    shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                  ),
+                  onPressed: () {
+                    print('Pressed');
+                    Profile()
+                        .updateProfile(_name.text, _email.text, _number.text,
+                            _password.text)
+                        .then((value) => {
+                              value
+                                  ? {
+                                      Fluttertoast.showToast(
+                                          msg: "Details Updated",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          backgroundColor: Colors.green,
+                                          textColor: Colors.white),
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => HomePage()),
+                                      )
+                                      // Navigator.pop(context)
+                                    }
+                                  : {
+                                      //pop up error
+                                      Fluttertoast.showToast(
+                                          msg: "Wrong Username Or Password",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.BOTTOM,
+                                          backgroundColor: Colors.red,
+                                          textColor: Colors.white)
+                                    }
+                            });
+                  },
+                )
+              ],
             ),
           ],
         ),
@@ -75,4 +208,25 @@ class _EditProfileState extends State<EditProfile> {
       ),
     );
   }
+
+// ListTile buildAddressTile(String heading, String address) {
+//   return ListTile(
+//     contentPadding: EdgeInsets.symmetric(horizontal: 4),
+//     title: Row(
+//       children: [
+//         Text(heading),
+//         Spacer(),
+//         Icon(
+//           Icons.edit,
+//           color: Color(0xff686868),
+//           size: 20,
+//         ),
+//       ],
+//     ),
+//     subtitle: Text(
+//       address,
+//       style: TextStyle(fontSize: 14),
+//     ),
+//   );
+// }
 }
