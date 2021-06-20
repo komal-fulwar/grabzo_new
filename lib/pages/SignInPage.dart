@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:Grabzo/animation/ScaleRoute.dart';
 import 'package:Grabzo/pages/SignUpPage.dart';
 import 'package:Grabzo/service/Profile.dart';
+import 'package:Grabzo/pages/HomePage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';
@@ -255,7 +256,7 @@ class SignInButtonWidget extends StatelessWidget {
                               context,
                               PageTransition(
                                   type: PageTransitionType.rightToLeft,
-                                  child: StoreTab())),
+                                  child: HomePage())),
                         }
                       : {
                           Fluttertoast.showToast(

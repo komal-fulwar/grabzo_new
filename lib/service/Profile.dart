@@ -32,6 +32,8 @@ class Profile {
     Response response = await post(url, headers: headers, body: json);
     if (response.statusCode == 201) {
       Map<String, dynamic> map = jsonDecode(response.body);
+
+      print("Token: ${map["jwt"]}");
       return map["jwt"];
     } else {
       return null;

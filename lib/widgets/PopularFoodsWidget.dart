@@ -1,3 +1,5 @@
+import 'package:Grabzo/model/ItemsBean.dart';
+import 'package:Grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
 import 'package:Grabzo/animation/RotationRoute.dart';
 import 'package:Grabzo/animation/ScaleRoute.dart';
@@ -5,6 +7,7 @@ import 'package:Grabzo/pages/CartTab.dart';
 
 import 'package:Grabzo/pages/ProductInfo.dart';
 import 'package:Grabzo/pages/SeeAll.dart';
+import 'package:Grabzo/constant/constants.dart';
 
 class PopularFoodsWidget extends StatefulWidget {
   @override
@@ -34,14 +37,14 @@ class PopularFoodTiles extends StatelessWidget {
   String imageUrl;
 
   String price;
-  String slug;
+  String id;
 
   PopularFoodTiles(
       {Key key,
       @required this.name,
       @required this.imageUrl,
       @required this.price,
-      @required this.slug})
+      @required this.id})
       : super(key: key);
 
   @override
@@ -99,29 +102,29 @@ class PopularFoodTiles extends StatelessWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
                           ),
-                          Container(
-                            alignment: Alignment.topRight,
-                            padding: EdgeInsets.only(right: 5),
-                            child: Container(
-                              height: 28,
-                              width: 28,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Colors.white70,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Color(0xFFfae3e2),
-                                      blurRadius: 25.0,
-                                      offset: Offset(0.0, 0.75),
-                                    ),
-                                  ]),
-                              child: Icon(
-                                Icons.favorite,
-                                color: Color(0xfffb3132),
-                                size: 16,
-                              ),
-                            ),
-                          ),
+                          // Container(
+                          //   alignment: Alignment.topRight,
+                          //   padding: EdgeInsets.only(right: 5),
+                          //   child: Container(
+                          //     height: 28,
+                          //     width: 28,
+                          //     decoration: BoxDecoration(
+                          //         shape: BoxShape.circle,
+                          //         color: Colors.white70,
+                          //         boxShadow: [
+                          //           BoxShadow(
+                          //             color: Color(0xFFfae3e2),
+                          //             blurRadius: 25.0,
+                          //             offset: Offset(0.0, 0.75),
+                          //           ),
+                          //         ]),
+                          //     child: Icon(
+                          //       Icons.favorite,
+                          //       color: Color(0xfffb3132),
+                          //       size: 16,
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                       Row(
@@ -130,7 +133,7 @@ class PopularFoodTiles extends StatelessWidget {
                           Container(
                             alignment: Alignment.bottomLeft,
                             padding: EdgeInsets.only(left: 5, top: 5, right: 5),
-                            child: Text('\$' + price,
+                            child: Text(Constants.rupeesSymbol + price,
                                 style: TextStyle(
                                     color: Color(0xFF6e6e71),
                                     fontSize: 12,
@@ -189,25 +192,49 @@ class PopularFoodTitle extends StatelessWidget {
 class PopularFoodItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.horizontal,
-      children: <Widget>[
-        PopularFoodTiles(
-            name: "Fried Egg",
-            imageUrl: "ic_popular_food_1",
-            price: '15.06',
-            slug: "fried_egg"),
-        PopularFoodTiles(
-            name: "Mixed Vegetable",
-            imageUrl: "ic_popular_food_3",
-            price: "17.03",
-            slug: ""),
-        PopularFoodTiles(
-            name: "Fried Egg",
-            imageUrl: "ic_popular_food_1",
-            price: '15.06',
-            slug: "fried_egg"),
-      ],
-    );
+    return FutureBuilder(
+        future: Items().getAllItems(),
+        builder: (BuildContext context, AsyncSnapshot<ItemsBean> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            if (snapshot.hasError)
+              return Center(child: Text('Error: ${snapshot.error}'));
+            else {
+              return ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  for (var item in snapshot.data.items)
+                    PopularFoodTiles(
+                        name: item.itemName,
+                        imageUrl: "ic_popular_food_1",
+                        price: item.itemPrice.toString(),
+                        id: item.itemId.toString()),
+                ],
+              );
+            }
+          }
+        });
+
+    //     ListView(
+    //   scrollDirection: Axis.horizontal,
+    //   children: <Widget>[
+    //     PopularFoodTiles(
+    //         name: "Fried Egg",
+    //         imageUrl: "ic_popular_food_1",
+    //         price: '15.06',
+    //         id: "0"),
+    //     PopularFoodTiles(
+    //         name: "Mixed Vegetable",
+    //         imageUrl: "ic_popular_food_3",
+    //         price: "17.03",
+    //         id: "1"),
+    //     PopularFoodTiles(
+    //         name: "Fried Egg",
+    //         imageUrl: "ic_popular_food_1",
+    //         price: '15.06',
+    //         id: "2"),
+    //   ],
+    // );
   }
 }

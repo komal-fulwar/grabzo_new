@@ -43,8 +43,9 @@ class _StoreTabState extends State<StoreTab> {
           children: <Widget>[
             SearchWidget(),
             TopMenus(),
+            TopMenus(),
             PopularFoodsWidget(),
-            PopularFoodsWidget(),
+            // PopularFoodsWidget(),
 
             // BestFoodWidget(),
           ],
