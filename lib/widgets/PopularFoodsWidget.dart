@@ -102,29 +102,29 @@ class PopularFoodTiles extends StatelessWidget {
                                     fontSize: 15,
                                     fontWeight: FontWeight.w500)),
                           ),
-                          // Container(
-                          //   alignment: Alignment.topRight,
-                          //   padding: EdgeInsets.only(right: 5),
-                          //   child: Container(
-                          //     height: 28,
-                          //     width: 28,
-                          //     decoration: BoxDecoration(
-                          //         shape: BoxShape.circle,
-                          //         color: Colors.white70,
-                          //         boxShadow: [
-                          //           BoxShadow(
-                          //             color: Color(0xFFfae3e2),
-                          //             blurRadius: 25.0,
-                          //             offset: Offset(0.0, 0.75),
-                          //           ),
-                          //         ]),
-                          //     child: Icon(
-                          //       Icons.favorite,
-                          //       color: Color(0xfffb3132),
-                          //       size: 16,
-                          //     ),
-                          //   ),
-                          // ),
+                          Container(
+                            alignment: Alignment.topRight,
+                            padding: EdgeInsets.only(right: 5),
+                            child: Container(
+                              height: 28,
+                              width: 28,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white70,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0xFFfae3e2),
+                                      blurRadius: 25.0,
+                                      offset: Offset(0.0, 0.75),
+                                    ),
+                                  ]),
+                              child: Icon(
+                                Icons.favorite,
+                                color: Color(0xfffb3132),
+                                size: 16,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                       Row(
