@@ -1,10 +1,7 @@
 import 'package:Grabzo/model/ItemsBean.dart';
 import 'package:Grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/animation/RotationRoute.dart';
 import 'package:Grabzo/animation/ScaleRoute.dart';
-import 'package:Grabzo/pages/CartTab.dart';
-
 import 'package:Grabzo/pages/ProductInfo.dart';
 import 'package:Grabzo/pages/SeeAll.dart';
 import 'package:Grabzo/constant/constants.dart';
@@ -33,11 +30,10 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
 }
 
 class PopularFoodTiles extends StatelessWidget {
-  String name;
-  String imageUrl;
-
-  String price;
-  int id;
+  final String name;
+  final String imageUrl;
+  final String price;
+  final int id;
 
   PopularFoodTiles(
       {Key key,

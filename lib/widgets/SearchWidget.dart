@@ -1,9 +1,8 @@
 import 'package:Grabzo/pages/SearchSeeAll.dart';
-import 'package:Grabzo/pages/SeeAll.dart';
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {
-  TextEditingController _search = new TextEditingController();
+  final TextEditingController _search = new TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(

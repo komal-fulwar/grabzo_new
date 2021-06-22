@@ -2,8 +2,6 @@ import 'package:Grabzo/pages/Shops.dart';
 import 'package:flutter/material.dart';
 import 'package:Grabzo/animation/ScaleRoute.dart';
 import 'package:Grabzo/pages/SignInPage.dart';
-import 'package:Grabzo/widgets/BestFoodWidget.dart';
-import 'package:Grabzo/widgets/BottomNavBarWidget.dart';
 import 'package:Grabzo/widgets/PopularFoodsWidget.dart';
 import 'package:Grabzo/widgets/SearchWidget.dart';
 import 'package:Grabzo/widgets/TopMenus.dart';

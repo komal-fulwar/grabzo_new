@@ -2,10 +2,6 @@ import 'package:Grabzo/model/ProfilBean.dart';
 import 'package:Grabzo/service/Profile.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/Components/custom_button.dart';
-import 'package:Grabzo/Components/drawer.dart';
-import 'package:Grabzo/Components/entry_field.dart';
-import 'package:Grabzo/Theme2/colors.dart';
 import 'package:Grabzo/pages/EditProfile.dart';
 
 class MyAccount extends StatefulWidget {
@@ -16,7 +12,6 @@ class MyAccount extends StatefulWidget {
 class _MyAccountState extends State<MyAccount> {
   var _getProfile;
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getProfile = Profile().getProfile();
   }

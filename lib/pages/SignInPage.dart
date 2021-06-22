@@ -203,8 +203,8 @@ class _SignInPageState extends State<SignInPage> {
 }
 
 class SignInButtonWidget extends StatelessWidget {
-  TextEditingController email;
-  TextEditingController password;
+  final TextEditingController email;
+  final TextEditingController password;
 
   SignInButtonWidget(this.email, this.password);
   @override

@@ -279,11 +279,11 @@ class SignUpPage extends StatelessWidget {
 }
 
 class SignInButtonWidget extends StatelessWidget {
-  TextEditingController firstName;
-  TextEditingController lastName;
-  TextEditingController number;
-  TextEditingController email;
-  TextEditingController password;
+  final TextEditingController firstName;
+  final TextEditingController lastName;
+  final TextEditingController number;
+  final TextEditingController email;
+  final TextEditingController password;
   SignInButtonWidget(
       this.firstName, this.lastName, this.number, this.email, this.password);
 

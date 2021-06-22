@@ -1,15 +1,8 @@
 import 'package:Grabzo/pages/HomePage.dart';
-import 'package:Grabzo/pages/MyAccount.dart';
 import 'package:Grabzo/service/Profile.dart';
 import 'package:Grabzo/constant/colors.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/Components/custom_button.dart';
-import 'package:Grabzo/Components/drawer.dart';
-import 'package:Grabzo/Components/entry_field.dart';
-// import 'package:groshop/Locale/locales.dart';
-import 'package:Grabzo/Pages/Other/add_address.dart';
-import 'package:Grabzo/constant/colours.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class EditProfile extends StatefulWidget {

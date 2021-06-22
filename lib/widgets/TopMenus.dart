@@ -21,7 +21,7 @@ class _TopMenusState extends State<TopMenus> {
           TopMenuTiles(name: "Soft Drink", imageUrl: "ic_soft_drink", slug: ""),
           TopMenuTiles(name: "Burger", imageUrl: "ic_burger", slug: ""),
           TopMenuTiles(name: "Sushi", imageUrl: "ic_sushi", slug: ""),
-          OutlineButton.icon()
+          // OutlineButton.icon()
         ],
       ),
     );
@@ -29,9 +29,9 @@ class _TopMenusState extends State<TopMenus> {
 }
 
 class TopMenuTiles extends StatelessWidget {
-  String name;
-  String imageUrl;
-  String slug;
+  final String name;
+  final String imageUrl;
+  final String slug;
 
   TopMenuTiles(
       {Key key,
@@ -50,7 +50,7 @@ class TopMenuTiles extends StatelessWidget {
             padding: EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
             decoration: new BoxDecoration(boxShadow: [
               new BoxShadow(
-                color: Color( 0xffeefae2 ),
+                color: Color(0xffeefae2),
                 blurRadius: 25.0,
                 offset: Offset(0.0, 0.75),
               ),

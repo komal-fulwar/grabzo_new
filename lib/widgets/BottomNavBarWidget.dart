@@ -27,7 +27,6 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
             style: TextStyle(color: Color(0xFF2c2b2b)),
           ),
         ),
-
         BottomNavigationBarItem(
           icon: Icon(Icons.card_giftcard),
           title: Text(
@@ -44,7 +43,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         ),
       ],
       currentIndex: _selectedIndex,
-      selectedItemColor: Color( 0xff42950a ),
+      selectedItemColor: Color(0xff42950a),
       onTap: _onItemTapped,
     );
   }

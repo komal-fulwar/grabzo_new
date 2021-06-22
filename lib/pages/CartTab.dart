@@ -3,7 +3,6 @@ import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Grabzo/Theme2/colors.dart';
-import 'package:Grabzo/pages/StoreTab.dart';
 
 class Product {
   Product(this.img, this.name, this.category, this.price, this.count);
