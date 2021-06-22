@@ -9,29 +9,28 @@ import 'package:Grabzo/Theme2/colors.dart';
 import 'package:Grabzo/pages/CartTab.dart';
 import 'package:Grabzo/pages/SeeAll.dart';
 
-class Product {
-  Product(this.image, this.productName, this.productType, this.price);
-  String image;
-  String productName;
-  String productType;
-  String price;
-}
+// class Product {
+//   Product(this.image, this.productName, this.productType, this.price);
+//   String image;
+//   String productName;
+//   String productType;
+//   String price;
+// }
 
 class ProductInfo extends StatefulWidget {
   ProductInfo({this.id});
   int id;
   @override
-  _ProductInfoState createState() => _ProductInfoState();
+  _ProductInfoState createState() => _ProductInfoState(id);
 }
 
 class _ProductInfoState extends State<ProductInfo> {
-  _ProductInfoState({this.id});
-  int id;
+  _ProductInfoState(this._id);
+  int _id;
   var _item;
   void initState() {
-    // TODO: implement initState
     super.initState();
-    _item = Items().getItem(id);
+    _item = Items().getItem(_id);
   }
 
   @override
@@ -49,7 +48,6 @@ class _ProductInfoState extends State<ProductInfo> {
             }
           }
         });
-    // var locale = AppLocalizations.of(context);
   }
 
   Scaffold _productInfoScaffold(BuildContext context, ItemBean data) {
