@@ -21,6 +21,7 @@ class _TopMenusState extends State<TopMenus> {
           TopMenuTiles(name: "Soft Drink", imageUrl: "ic_soft_drink", slug: ""),
           TopMenuTiles(name: "Burger", imageUrl: "ic_burger", slug: ""),
           TopMenuTiles(name: "Sushi", imageUrl: "ic_sushi", slug: ""),
+          OutlineButton.icon()
         ],
       ),
     );
