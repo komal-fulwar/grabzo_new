@@ -1,3 +1,4 @@
+import 'package:Grabzo/pages/Shops.dart';
 import 'package:flutter/material.dart';
 import 'package:Grabzo/animation/ScaleRoute.dart';
 import 'package:Grabzo/pages/SignInPage.dart';
@@ -43,7 +44,11 @@ class _StoreTabState extends State<StoreTab> {
           children: <Widget>[
             SearchWidget(),
             TopMenus(),
-            TopMenus(),
+
+            SpecialOffers(),
+            Divider(
+              color: Colors.white,
+            ),
             PopularFoodsWidget(),
             // PopularFoodsWidget(),
 

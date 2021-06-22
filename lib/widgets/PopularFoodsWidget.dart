@@ -155,25 +155,18 @@ class PopularFoodTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+      padding: EdgeInsets.only(left: 15, right: 10, top: 5, bottom: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
             "Popluar Foods",
             style: TextStyle(
-                fontSize: 20,
+                fontSize: 18,
                 color: Color(0xff000000),
                 fontWeight: FontWeight.w400),
           ),
-          InkWell(
-            child: Text(
-              "View All",
-              style: TextStyle(
-                  fontSize: 16,
-                  color: Color(0xFF6e6e71),
-                  fontWeight: FontWeight.w100),
-            ),
+          GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
@@ -182,7 +175,11 @@ class PopularFoodTitle extends StatelessWidget {
                 ),
               );
             },
-          )
+            child: Text(
+              "See More",
+              style: TextStyle(color: Color(0xFFBBBBBB)),
+            ),
+          ),
         ],
       ),
     );
