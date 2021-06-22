@@ -1,3 +1,6 @@
+import 'package:Grabzo/model/ItemBean.dart';
+import 'package:Grabzo/model/ItemsBean.dart';
+import 'package:Grabzo/service/Items.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,24 +9,48 @@ import 'package:Grabzo/Theme2/colors.dart';
 import 'package:Grabzo/pages/CartTab.dart';
 import 'package:Grabzo/pages/SeeAll.dart';
 
-class Product {
-  Product(this.image, this.productName, this.productType, this.price);
-  String image;
-  String productName;
-  String productType;
-  String price;
-}
+// class Product {
+//   Product(this.image, this.productName, this.productType, this.price);
+//   String image;
+//   String productName;
+//   String productType;
+//   String price;
+// }
 
 class ProductInfo extends StatefulWidget {
+  ProductInfo({this.id});
+  int id;
   @override
-  _ProductInfoState createState() => _ProductInfoState();
+  _ProductInfoState createState() => _ProductInfoState(id);
 }
 
 class _ProductInfoState extends State<ProductInfo> {
+  _ProductInfoState(this._id);
+  int _id;
+  var _item;
+  void initState() {
+    super.initState();
+    _item = Items().getItem(_id);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // var locale = AppLocalizations.of(context);
+    return FutureBuilder(
+        future: _item,
+        builder: (BuildContext context, AsyncSnapshot<ItemBean> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            if (snapshot.hasError)
+              return Center(child: Text('Error: ${snapshot.error}'));
+            else {
+              return _productInfoScaffold(context, snapshot.data);
+            }
+          }
+        });
+  }
 
+  Scaffold _productInfoScaffold(BuildContext context, ItemBean data) {
     return Scaffold(
       body: FadedSlideAnimation(
         SingleChildScrollView(

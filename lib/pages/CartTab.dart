@@ -1,3 +1,4 @@
+import 'package:Grabzo/pages/HomePage.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,13 +6,13 @@ import 'package:Grabzo/Theme2/colors.dart';
 import 'package:Grabzo/pages/StoreTab.dart';
 
 class Product {
-  Product(this.img, this.name, this.category, this.price);
+  Product(this.img, this.name, this.category, this.price, this.count);
 
   String img;
   String name;
   String category;
   String price;
-//  int count;
+  int count;
 }
 
 class CartTab extends StatefulWidget {
@@ -20,24 +21,22 @@ class CartTab extends StatefulWidget {
 }
 
 class _CartTabState extends State<CartTab> {
-  List<int> count = [1, 1, 1, 1, 1, 1];
+  // List<int> count = [1, 1, 1, 1, 1, 1];
 
   @override
   Widget build(BuildContext context) {
     List<Product> items = [
       Product("assets/ProductImages/lady finger.png", "FreshLadiesFinger",
-          'Operum Market', '\$32.00'),
+          'Operum Market', '\$32.00', 2),
       Product("assets/ProductImages/tomato.png", "FreshRedTomatoes",
-          'Calvis Veggies', '\$44.00'),
+          'Calvis Veggies', '\$44.00', 1),
       Product("assets/ProductImages/Potatoes.png", "MediumPotatoes",
-          'Philinopis', '\$14.00'),
-      Product("assets/ProductImages/Potatoes.png", "MediumPotatoes",
-          'Philinopis', '\$14.00'),
-      Product("assets/ProductImages/Potatoes.png", "MediumPotatoes",
-          'Philinopis', '\$14.00'),
-      Product("assets/ProductImages/Potatoes.png", "MediumPotatoes",
-          'Philinopis', '\$14.00'),
+          'Philinopis', '\$14.00', 2)
     ];
+    return cartScaffold(context, items);
+  }
+
+  Scaffold cartScaffold(BuildContext context, List<Product> items) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -47,7 +46,7 @@ class _CartTabState extends State<CartTab> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => StoreTab(),
+                  builder: (context) => HomePage(),
                 ),
               );
             },
@@ -109,20 +108,20 @@ class _CartTabState extends State<CartTab> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    buildIconButton(
-                                        Icons.remove, index, items, count),
+                                    buildIconButton(Icons.remove, index, items,
+                                        items[index].count),
                                     SizedBox(
                                       width: 15,
                                     ),
-                                    Text('${count[index]}',
+                                    Text('${items[index].count}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1),
                                     SizedBox(
                                       width: 15,
                                     ),
-                                    buildIconButton(
-                                        Icons.add, index, items, count),
+                                    buildIconButton(Icons.add, index, items,
+                                        items[index].count),
                                     SizedBox(
                                       width: 40,
                                     ),
