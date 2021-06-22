@@ -32,9 +32,9 @@ class _SeeAllState extends State<SeeAll> {
           centerTitle: true),
       body: GridView.count(
         primary: false,
-        padding: const EdgeInsets.all(3),
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
+        padding: const EdgeInsets.all(0),
+        crossAxisSpacing: 0,
+        mainAxisSpacing: 0,
         crossAxisCount: 2,
         children: <Widget>[
           InkWell(
@@ -96,7 +96,7 @@ class _SeeAllState extends State<SeeAll> {
                                     ),
                                   ]),
                               child: Icon(
-                                Icons.favorite,
+                                Icons.near_me_outlined,
                                 color: Color(0xfffb3132),
                                 size: 16,
                               ),
