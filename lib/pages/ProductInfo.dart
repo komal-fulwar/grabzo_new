@@ -1,3 +1,4 @@
+import 'package:Grabzo/constant/constants.dart';
 import 'package:Grabzo/model/ItemBean.dart';
 import 'package:Grabzo/model/ItemsBean.dart';
 import 'package:Grabzo/service/Items.dart';
@@ -96,7 +97,7 @@ class _ProductInfoState extends State<ProductInfo> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "FreshLadiesFinger",
+                      data.itemName,
                       style: Theme.of(context).textTheme.headline3.copyWith(
                           color: Colors.black,
                           fontWeight: FontWeight.bold,
@@ -109,7 +110,7 @@ class _ProductInfoState extends State<ProductInfo> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Operum Market",
+                          data.shopName,
                           style: Theme.of(context).textTheme.headline6.copyWith(
                               color: Colors.grey[600],
                               fontSize: 14,
@@ -124,7 +125,10 @@ class _ProductInfoState extends State<ProductInfo> {
                     ),
                     Row(
                       children: [
-                        Text("\$32.0",
+                        Text(
+                            Constants.rupeesSymbol +
+                                " " +
+                                data.itemPrice.toString(),
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 20)),
                         Spacer(),

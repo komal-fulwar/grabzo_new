@@ -37,7 +37,7 @@ class PopularFoodTiles extends StatelessWidget {
   String imageUrl;
 
   String price;
-  String id;
+  int id;
 
   PopularFoodTiles(
       {Key key,
@@ -51,7 +51,7 @@ class PopularFoodTiles extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, ScaleRoute(page: ProductInfo()));
+        Navigator.push(context, ScaleRoute(page: ProductInfo(id: id)));
       },
       child: Column(
         children: <Widget>[
@@ -209,7 +209,7 @@ class PopularFoodItems extends StatelessWidget {
                         name: item.itemName,
                         imageUrl: "ic_popular_food_1",
                         price: item.itemPrice.toString(),
-                        id: item.itemId.toString()),
+                        id: item.itemId),
                 ],
               );
             }
