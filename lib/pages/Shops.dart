@@ -1,60 +1,57 @@
+import 'package:Grabzo/model/ShopsBean.dart';
+import 'package:Grabzo/pages/SeeAll.dart';
+import 'package:Grabzo/pages/SeeAllShops.dart';
+import 'package:Grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
-
 
 import 'section_title.dart';
 
-class SpecialOffers extends StatelessWidget {
-  const SpecialOffers({
+class Shops extends StatelessWidget {
+  const Shops({
     Key key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: Items().getAllShops(),
+        builder: (BuildContext context, AsyncSnapshot<ShopsBean> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            if (snapshot.hasError)
+              return Center(child: Text('Error: ${snapshot.error}'));
+            else {
+              return shopColumn(context, snapshot.data);
+            }
+          }
+        });
+  }
+
+  Column shopColumn(BuildContext context, ShopsBean data) {
     return Column(
       children: [
-        Padding(
-          padding:
-          EdgeInsets.symmetric(horizontal: (20)),
-          child: SectionTitle(
-            title: "Shops Near You",
-            press: () {},
-          ),
-        ),
+        // Padding(
+        //   padding: EdgeInsets.symmetric(horizontal: (20)),
+        // child:
+        ShopTitle(),
+        // SectionTitle(
+        //   title: "Shops Near You",
+        //   press: () {},
+        // ),
+        // ),
         SizedBox(height: (20)),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              SpecialOfferCard(
-                image: "assets/images/bestfood/ic_best_food_1.jpeg",
-                category: "Shop Name",
-                numOfBrands: 18,
-                press: () {},
-              ),
-              SpecialOfferCard(
-                image: "assets/images/bestfood/ic_best_food_1.jpeg",
-                category: "Shop Name",
-                numOfBrands: 18,
-                press: () {},
-              ),
-              SpecialOfferCard(
-                image: "assets/images/bestfood/ic_best_food_1.jpeg",
-                category: "Shop Name",
-                numOfBrands: 18,
-                press: () {},
-              ),
-              SpecialOfferCard(
-                image: "assets/images/bestfood/ic_best_food_1.jpeg",
-                category: "Shop Name",
-                numOfBrands: 18,
-                press: () {},
-              ),
-              SpecialOfferCard(
-                image: "assets/images/bestfood/ic_best_food_1.jpeg",
-                category: "Shop Name",
-                numOfBrands: 18,
-                press: () {},
-              ),
+              for (var shop in data.shops)
+                SpecialOfferCard(
+                  image: "assets/images/bestfood/ic_best_food_1.jpeg",
+                  category: shop.shopName,
+                  address: shop.shopAddress,
+                  press: () {},
+                ),
               SizedBox(width: (20)),
             ],
           ),
@@ -69,12 +66,12 @@ class SpecialOfferCard extends StatelessWidget {
     Key key,
     @required this.category,
     @required this.image,
-    @required this.numOfBrands,
+    @required this.address,
     @required this.press,
   }) : super(key: key);
 
   final String category, image;
-  final int numOfBrands;
+  final String address;
   final GestureTapCallback press;
 
   @override
@@ -122,7 +119,7 @@ class SpecialOfferCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        TextSpan(text: "$numOfBrands Brands")
+                        TextSpan(text: "$address")
                       ],
                     ),
                   ),
@@ -131,6 +128,41 @@ class SpecialOfferCard extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ShopTitle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(left: 15, right: 10, top: 5, bottom: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text(
+            "Shops Near You",
+            style: TextStyle(
+                fontSize: 18,
+                color: Color(0xff000000),
+                fontWeight: FontWeight.w400),
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SeeAllShops(),
+                ),
+              );
+            },
+            child: Text(
+              "See More",
+              style: TextStyle(color: Color(0xFFBBBBBB)),
+            ),
+          ),
+        ],
       ),
     );
   }

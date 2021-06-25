@@ -43,7 +43,7 @@ class _StoreTabState extends State<StoreTab> {
             SearchWidget(),
             TopMenus(),
 
-            SpecialOffers(),
+            Shops(),
             Divider(
               color: Colors.white,
             ),
