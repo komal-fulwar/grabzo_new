@@ -84,4 +84,12 @@ class Profile {
       return false;
     }
   }
+
+  Future<void> logOut() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove("token");
+    prefs.remove("wholesale");
+    var token = prefs.getString('token');
+    print("AFTER LOGOUT Token : $token");
+  }
 }

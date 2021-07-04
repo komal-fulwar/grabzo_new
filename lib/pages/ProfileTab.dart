@@ -1,3 +1,5 @@
+import 'package:Grabzo/pages/SignInPage.dart';
+import 'package:Grabzo/service/Profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Grabzo/Theme2/colors.dart';
@@ -96,7 +98,15 @@ class _ProfileTabState extends State<ProfileTab> {
             ProfileMenu(
               text: "Log Out",
               icon: "assets/icons/Log out.svg",
-              press: () {},
+              press: () {
+                Profile().logOut().then((value) => {
+                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+                        builder: (context) {
+                          return SignInPage();
+                        },
+                      ), (route) => false)
+                    });
+              },
             ),
           ],
         ),

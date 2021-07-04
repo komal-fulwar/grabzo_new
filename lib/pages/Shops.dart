@@ -1,10 +1,8 @@
 import 'package:Grabzo/model/ShopsBean.dart';
-import 'package:Grabzo/pages/SeeAll.dart';
+import 'package:Grabzo/pages/SeeAllShopItems.dart';
 import 'package:Grabzo/pages/SeeAllShops.dart';
 import 'package:Grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
-
-import 'section_title.dart';
 
 class Shops extends StatelessWidget {
   const Shops({
@@ -50,7 +48,15 @@ class Shops extends StatelessWidget {
                   image: "assets/images/bestfood/ic_best_food_1.jpeg",
                   category: shop.shopName,
                   address: shop.shopAddress,
-                  press: () {},
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            SeeAllShopItems(shop.shopId, shop.shopName),
+                      ),
+                    );
+                  },
                 ),
               SizedBox(width: (20)),
             ],

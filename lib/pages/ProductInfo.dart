@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:Grabzo/Theme2/colors.dart';
 import 'package:Grabzo/pages/CartTab.dart';
 import 'package:Grabzo/pages/SeeAll.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductInfo extends StatefulWidget {
   ProductInfo({this.id});
@@ -140,12 +141,28 @@ class _ProductInfoState extends State<ProductInfo> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CartTab(),
-                    ),
-                  );
+                  Items()
+                      .addToCart(data.itemId, data.itemPrice, 1)
+                      .then((value) => {
+                            if (value)
+                              {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CartTab(),
+                                  ),
+                                )
+                              }
+                            else
+                              {
+                                Fluttertoast.showToast(
+                                    msg: "Error Adding to Cart",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white)
+                              }
+                          });
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,
