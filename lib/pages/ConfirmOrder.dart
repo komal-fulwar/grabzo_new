@@ -35,15 +35,15 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
                       Icons.arrow_back_ios,
                       color: Colors.white,
                     ),
-                  onPressed: () {
-
-                  }),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
                 Positioned.directional(
                     textDirection: Directionality.of(context),
                     top: 70,
                     start: MediaQuery.of(context).size.width / 3.5,
                     child: Text(
-                      "confirmOrder",
+                      "confirm Order".toUpperCase(),
                       style: TextStyle(
                           letterSpacing: 1,
                           fontWeight: FontWeight.w500,

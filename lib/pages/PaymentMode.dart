@@ -41,7 +41,7 @@ class _PaymentModePageState extends State<PaymentModePage> {
                     top: 70,
                     start: MediaQuery.of(context).size.width / 3.5,
                     child: Text(
-                      "paymentMode".toUpperCase(),
+                      "payment Mode".toUpperCase(),
                       style: TextStyle(
                           letterSpacing: 1,
                           fontWeight: FontWeight.w500,
