@@ -68,6 +68,7 @@ flutter:
     - assets/images/
     - assets/ordercomplete.png
     - assets/ic_check.png
+    - assets/emptycart.png
     - assets/ProductImages/
     - assets/images/menus/ic_search_menu.png
     - assets/images/menus/logo_1.png

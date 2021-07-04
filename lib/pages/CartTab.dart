@@ -67,6 +67,26 @@ class _CartTabState extends State<CartTab> {
             ListView(
               physics: BouncingScrollPhysics(),
               children: [
+                // Spacer(
+                //   flex: 4,
+                // ),
+                // FadedScaleAnimation(
+                //   Image.asset(
+                //     'assets/emptycart.png',
+                //     scale: 3,
+                //   ),
+                // ),
+                // Spacer(
+                //   flex: 2,
+                // ),
+                // Text(
+                //   "Your Cart Is Empty",
+                //   textAlign: TextAlign.center,
+                //   style: Theme.of(context)
+                //       .textTheme
+                //       .subtitle1
+                //       .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
+                // ),
                 ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: items.length,
