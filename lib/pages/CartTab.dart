@@ -1,8 +1,11 @@
 import 'package:Grabzo/pages/HomePage.dart';
+
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Grabzo/Theme2/colors.dart';
+
+import 'Address.dart';
 
 class Product {
   Product(this.img, this.name, this.category, this.price, this.count);
@@ -165,21 +168,43 @@ class _CartTabState extends State<CartTab> {
                           padding: const EdgeInsets.all(20.0),
                           child: Row(
                             children: [
-                              Text(
-                                "CheckoutNow",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w500),
+                              InkWell(
+                                child: Text(
+                                  "CheckoutNow",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AddressPage(),
+                                    ),
+                                  );
+                                },
                               ),
+
                               Spacer(
                                 flex: 6,
                               ),
-                              Text("total",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.grey[100],
-                                      fontWeight: FontWeight.w500)),
+                              InkWell(
+                                child: Text("total",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.grey[100],
+                                        fontWeight: FontWeight.w500)),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => AddressPage(),
+                                    ),
+                                  );
+                                },
+                              ),
+
                               Spacer(
                                 flex: 1,
                               ),

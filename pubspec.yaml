@@ -62,9 +62,12 @@ flutter:
   #  - images/a_dot_ham.jpeg
   assets:
     - assets/
+    - assets/paymentcod.png
     - assets/Logos/
     - assets/icons/
     - assets/images/
+    - assets/ordercomplete.png
+    - assets/ic_check.png
     - assets/ProductImages/
     - assets/images/menus/ic_search_menu.png
     - assets/images/menus/logo_1.png

@@ -83,7 +83,7 @@ class _MyOrdersState extends State<MyOrders> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                               " placed" + '  ',
+                                " placed" + '  ',
                                 style: TextStyle(fontSize: 12),
                               ),
                               Text(
