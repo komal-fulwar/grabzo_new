@@ -1,3 +1,6 @@
+import 'package:Grabzo/model/CategoryBean.dart';
+import 'package:Grabzo/pages/SeeCategoryItem.dart';
+import 'package:Grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
 
 class TopMenus extends StatefulWidget {
@@ -8,19 +11,37 @@ class TopMenus extends StatefulWidget {
 class _TopMenusState extends State<TopMenus> {
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: Items().getAllCategory(),
+        builder: (BuildContext context, AsyncSnapshot<CategoryBean> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            if (snapshot.hasError)
+              return Center(child: Text('Error: ${snapshot.error}'));
+            else {
+              return topMenuContainer(context, snapshot.data);
+            }
+          }
+        });
+  }
+
+  Container topMenuContainer(BuildContext context, CategoryBean data) {
     return Container(
       height: 100,
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
-          TopMenuTiles(name: "Burger", imageUrl: "ic_burger", slug: ""),
-          TopMenuTiles(name: "Sushi", imageUrl: "ic_sushi", slug: ""),
-          TopMenuTiles(name: "Pizza", imageUrl: "ic_pizza", slug: ""),
-          TopMenuTiles(name: "Cake", imageUrl: "ic_cake", slug: ""),
-          TopMenuTiles(name: "Ice Cream", imageUrl: "ic_ice_cream", slug: ""),
-          TopMenuTiles(name: "Soft Drink", imageUrl: "ic_soft_drink", slug: ""),
-          TopMenuTiles(name: "Burger", imageUrl: "ic_burger", slug: ""),
-          TopMenuTiles(name: "Sushi", imageUrl: "ic_sushi", slug: ""),
+          //iterate for loop (categories)
+          //for (var item in data.)
+          TopMenuTiles(name: "Burger", imageUrl: "ic_burger", id: 1),
+          // TopMenuTiles(name: "Sushi", imageUrl: "ic_sushi", id: ""),
+          // TopMenuTiles(name: "Pizza", imageUrl: "ic_pizza", id: ""),
+          // TopMenuTiles(name: "Cake", imageUrl: "ic_cake", id: ""),
+          // TopMenuTiles(name: "Ice Cream", imageUrl: "ic_ice_cream", id: ""),
+          // TopMenuTiles(name: "Soft Drink", imageUrl: "ic_soft_drink", id: ""),
+          // TopMenuTiles(name: "Burger", imageUrl: "ic_burger", id: ""),
+          // TopMenuTiles(name: "Sushi", imageUrl: "ic_sushi", id: ""),
           // OutlineButton.icon()
         ],
       ),
@@ -31,19 +52,22 @@ class _TopMenusState extends State<TopMenus> {
 class TopMenuTiles extends StatelessWidget {
   final String name;
   final String imageUrl;
-  final String slug;
+  final int id;
 
   TopMenuTiles(
       {Key key,
       @required this.name,
       @required this.imageUrl,
-      @required this.slug})
+      @required this.id})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        // Navigator.push(context,
+        //     MaterialPageRoute(builder: (context) => SeeCategoryItem(id)));
+      },
       child: Column(
         children: <Widget>[
           Container(

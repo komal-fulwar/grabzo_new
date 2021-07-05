@@ -19,9 +19,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # my dependences 
+  # my dependences
   http: ^0.12.2
-  page_transition: '^1.0.9'
+  page_transition: "^1.0.9"
   shared_preferences: ^0.5.12+4
   fluttertoast: ^3.1.0
 
@@ -35,22 +35,17 @@ dependencies:
   flutter_bloc: ^6.0.1
   grouped_buttons: ^1.0.4
   flutter_svg: ^0.19.1
-
-
   animation_wrappers: ^0.0.1
-
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
