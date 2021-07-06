@@ -1,6 +1,6 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/Routes/routes.dart';
+import 'package:grabzo/Routes/routes.dart';
 
 GridView buildGridView(List listName, {bool favourites = false}) {
   return GridView.builder(

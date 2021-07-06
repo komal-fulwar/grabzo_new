@@ -1,10 +1,10 @@
-import 'package:Grabzo/model/ItemsBean.dart';
-import 'package:Grabzo/service/Items.dart';
+import 'package:grabzo/model/ItemsBean.dart';
+import 'package:grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/animation/ScaleRoute.dart';
-import 'package:Grabzo/pages/ProductInfo.dart';
-import 'package:Grabzo/pages/SeeAll.dart';
-import 'package:Grabzo/constant/constants.dart';
+import 'package:grabzo/animation/ScaleRoute.dart';
+import 'package:grabzo/pages/ProductInfo.dart';
+import 'package:grabzo/pages/SeeAll.dart';
+import 'package:grabzo/constant/constants.dart';
 
 class PopularFoodsWidget extends StatefulWidget {
   @override

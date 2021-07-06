@@ -1,10 +1,10 @@
-import 'package:Grabzo/pages/Shops.dart';
+import 'package:grabzo/pages/Shops.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/animation/ScaleRoute.dart';
-import 'package:Grabzo/pages/SignInPage.dart';
-import 'package:Grabzo/widgets/PopularFoodsWidget.dart';
-import 'package:Grabzo/widgets/SearchWidget.dart';
-import 'package:Grabzo/widgets/TopMenus.dart';
+import 'package:grabzo/animation/ScaleRoute.dart';
+import 'package:grabzo/pages/SignInPage.dart';
+import 'package:grabzo/widgets/PopularFoodsWidget.dart';
+import 'package:grabzo/widgets/SearchWidget.dart';
+import 'package:grabzo/widgets/TopMenus.dart';
 
 class StoreTab extends StatefulWidget {
   @override

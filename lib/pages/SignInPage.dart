@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:Grabzo/animation/ScaleRoute.dart';
-import 'package:Grabzo/pages/SignUpPage.dart';
-import 'package:Grabzo/service/Profile.dart';
-import 'package:Grabzo/pages/HomePage.dart';
+import 'package:grabzo/animation/ScaleRoute.dart';
+import 'package:grabzo/pages/SignUpPage.dart';
+import 'package:grabzo/service/Profile.dart';
+import 'package:grabzo/pages/HomePage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';

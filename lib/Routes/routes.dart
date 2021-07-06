@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Grabzo/Pages/Other/add_address.dart';
-import 'package:Grabzo/Pages/Other/send_to_bank.dart';
+import 'package:grabzo/Pages/Other/add_address.dart';
+import 'package:grabzo/Pages/Other/send_to_bank.dart';
 
 class PageRoutes {
   static const String signUp = 'sign_up';

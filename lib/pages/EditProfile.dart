@@ -1,6 +1,6 @@
-import 'package:Grabzo/pages/HomePage.dart';
-import 'package:Grabzo/service/Profile.dart';
-import 'package:Grabzo/constant/colors.dart';
+import 'package:grabzo/pages/HomePage.dart';
+import 'package:grabzo/service/Profile.dart';
+import 'package:grabzo/constant/colors.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

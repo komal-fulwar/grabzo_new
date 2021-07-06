@@ -2,7 +2,7 @@ import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 // import 'package:flutter_app/Locale/locales.dart';
-import 'package:Grabzo/Routes/routes.dart';
+import 'package:grabzo/Routes/routes.dart';
 
 Drawer buildDrawer(BuildContext context) {
   // var locale = AppLocalizations.of(context);

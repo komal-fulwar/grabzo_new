@@ -1,12 +1,12 @@
-import 'package:Grabzo/constant/constants.dart';
-import 'package:Grabzo/model/ItemBean.dart';
-import 'package:Grabzo/service/Items.dart';
+import 'package:grabzo/constant/constants.dart';
+import 'package:grabzo/model/ItemBean.dart';
+import 'package:grabzo/service/Items.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/Theme2/colors.dart';
-import 'package:Grabzo/pages/CartTab.dart';
-import 'package:Grabzo/pages/SeeAll.dart';
+import 'package:grabzo/Theme2/colors.dart';
+import 'package:grabzo/pages/CartTab.dart';
+import 'package:grabzo/pages/SeeAll.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class ProductInfo extends StatefulWidget {

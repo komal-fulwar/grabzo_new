@@ -1,14 +1,10 @@
-import 'package:Grabzo/Theme2/colors.dart';
+import 'package:grabzo/Theme2/colors.dart';
+import 'package:grabzo/pages/HomePage.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/Components/custom_button.dart';
-
-
 import 'my_orders.dart';
 
 class ConfirmOrderPage extends StatefulWidget {
-
-
   @override
   _ConfirmOrderPageState createState() => _ConfirmOrderPageState();
 }
@@ -16,7 +12,6 @@ class ConfirmOrderPage extends StatefulWidget {
 class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: FadedSlideAnimation(
@@ -43,7 +38,7 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
                     top: 70,
                     start: MediaQuery.of(context).size.width / 3.5,
                     child: Text(
-                      "confirm Order".toUpperCase(),
+                      "Order Placed".toUpperCase(),
                       style: TextStyle(
                           letterSpacing: 1,
                           fontWeight: FontWeight.w500,
@@ -119,7 +114,7 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
                       MaterialPageRoute(builder: (context) => MyOrders()));
                 },
                 child: Text(
-                "my Orders".toUpperCase(),
+                  "my Orders".toUpperCase(),
                   style: TextStyle(
                       color: Color(0xFF39c526),
                       fontSize: 18,
@@ -133,7 +128,7 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => MyOrders(),
+                    builder: (context) => HomePage(),
                   ),
                 );
               },

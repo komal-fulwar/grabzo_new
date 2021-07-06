@@ -1,4 +1,4 @@
-import 'package:Grabzo/model/ItemBean.dart';
+import 'package:grabzo/model/ItemBean.dart';
 
 class ItemsBean {
   List<ItemBean> items;

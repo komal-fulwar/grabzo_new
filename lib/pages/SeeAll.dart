@@ -1,8 +1,8 @@
-import 'package:Grabzo/constant/constants.dart';
-import 'package:Grabzo/model/ItemsBean.dart';
-import 'package:Grabzo/service/Items.dart';
+import 'package:grabzo/constant/constants.dart';
+import 'package:grabzo/model/ItemsBean.dart';
+import 'package:grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/pages/ProductInfo.dart';
+import 'package:grabzo/pages/ProductInfo.dart';
 
 class SeeAll extends StatefulWidget {
   @override

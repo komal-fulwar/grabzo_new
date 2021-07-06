@@ -1,7 +1,7 @@
-import 'package:Grabzo/model/ShopsBean.dart';
-import 'package:Grabzo/pages/SeeAllShopItems.dart';
-import 'package:Grabzo/pages/SeeAllShops.dart';
-import 'package:Grabzo/service/Items.dart';
+import 'package:grabzo/model/ShopsBean.dart';
+import 'package:grabzo/pages/SeeAllShopItems.dart';
+import 'package:grabzo/pages/SeeAllShops.dart';
+import 'package:grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
 
 class Shops extends StatelessWidget {

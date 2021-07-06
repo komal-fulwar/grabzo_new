@@ -1,8 +1,9 @@
-import 'package:Grabzo/model/ProfilBean.dart';
-import 'package:Grabzo/service/Profile.dart';
+import 'package:grabzo/model/ProfilBean.dart';
+import 'package:grabzo/pages/EditAddress.dart';
+import 'package:grabzo/service/Profile.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/pages/EditProfile.dart';
+import 'package:grabzo/pages/EditProfile.dart';
 
 class MyAccount extends StatefulWidget {
   @override
@@ -64,7 +65,7 @@ class _MyAccountState extends State<MyAccount> {
                   ),
                   ListTile(
                     title: Text(
-                      "MyProfile",
+                      "My Profile",
                       style: Theme.of(context).textTheme.headline6.copyWith(
                           fontSize: 17,
                           letterSpacing: 1,
@@ -139,7 +140,7 @@ class _MyAccountState extends State<MyAccount> {
                     height: 10,
                   ),
                   Text(
-                    "MyAddresses",
+                    "My Addresses",
                     style: Theme.of(context).textTheme.headline6.copyWith(
                         fontSize: 16,
                         letterSpacing: 1,
@@ -157,12 +158,24 @@ class _MyAccountState extends State<MyAccount> {
                         IconButton(
                           icon: const Icon(Icons.edit),
                           color: Color(0xff686868),
-                          onPressed: () {},
+                          onPressed: () {
+                            var method = (null == data.address.street1)
+                                ? "put"
+                                : "patch";
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => EditAddress(method),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
                     subtitle: Text(
-                      "${data.address.street1}, ${data.address.street2}, \n${data.address.landmark}, ${data.address.city} ${data.address.state}, ${data.address.country}, ${data.address.pin}",
+                      (null == data.address.street1)
+                          ? "No Address"
+                          : "${data.address.street1}, ${data.address.street2}, \n${data.address.landmark}, ${data.address.city} ${data.address.state}, ${data.address.country}, ${data.address.pin}",
                       style: TextStyle(fontSize: 14),
                     ),
                   ),

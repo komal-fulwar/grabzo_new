@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Grabzo/pages/CartTab.dart';
-import 'package:Grabzo/pages/ProfileTab.dart';
-import 'package:Grabzo/pages/StoreTab.dart';
+import 'package:grabzo/pages/CartTab.dart';
+import 'package:grabzo/pages/ProfileTab.dart';
+import 'package:grabzo/pages/StoreTab.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatefulWidget {

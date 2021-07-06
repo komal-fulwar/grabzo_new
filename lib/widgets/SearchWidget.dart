@@ -1,4 +1,4 @@
-import 'package:Grabzo/pages/SearchSeeAll.dart';
+import 'package:grabzo/pages/SearchSeeAll.dart';
 import 'package:flutter/material.dart';
 
 class SearchWidget extends StatelessWidget {

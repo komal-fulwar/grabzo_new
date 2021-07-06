@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Grabzo/animation/ScaleRoute.dart';
-import 'package:Grabzo/pages/SignInPage.dart';
-import 'package:Grabzo/service/Profile.dart';
+import 'package:grabzo/animation/ScaleRoute.dart';
+import 'package:grabzo/pages/SignInPage.dart';
+import 'package:grabzo/service/Profile.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:page_transition/page_transition.dart';

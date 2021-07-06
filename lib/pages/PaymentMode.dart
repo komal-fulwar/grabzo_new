@@ -1,20 +1,25 @@
-import 'package:Grabzo/pages/ConfirmOrder.dart';
+import 'package:grabzo/pages/ConfirmOrder.dart';
+import 'package:grabzo/service/Items.dart';
 import 'package:animation_wrappers/Animations/faded_translation_animation.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-
-
+import 'package:grabzo/Theme2/colors.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class PaymentModePage extends StatefulWidget {
-
+  PaymentModePage(this.cartId);
+  final int cartId;
   @override
-  _PaymentModePageState createState() => _PaymentModePageState();
+  _PaymentModePageState createState() => _PaymentModePageState(cartId);
 }
 
 class _PaymentModePageState extends State<PaymentModePage> {
+  _PaymentModePageState(this.cartId);
+
+  bool clicked = false;
+  int cartId;
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: FadedSlideAnimation(
         Column(
@@ -82,19 +87,65 @@ class _PaymentModePageState extends State<PaymentModePage> {
                 )
               ],
             ),
-
             Divider(
               thickness: 0.2,
               height: 8,
             ),
-            buildPaymentHead(context," Cash"),
-            buildPaymentType(Image.asset('assets/paymentcod.png'),
-                "Cash On Delivery"),
+            buildPaymentHead(context, " Cash"),
+            buildPaymentType(
+                Image.asset('assets/paymentcod.png'), "Cash On Delivery"),
             Divider(
               thickness: 0.2,
               height: 8,
             ),
-
+            Spacer(),
+            (clicked)
+                ? GestureDetector(
+                    onTap: () {
+                      // final overlay = LoadingOverlay.of(context);
+                      // await overlay.during(
+                      Items().placeOrder(widget.cartId).then((value) async => {
+                                if (value)
+                                  {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ConfirmOrderPage(),
+                                      ),
+                                    )
+                                  }
+                                else
+                                  Fluttertoast.showToast(
+                                      msg: "Error Placing Order",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white)
+                              })
+                          // )
+                          ;
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 60,
+                      color: kMainColor,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 20.0),
+                        child: Text(
+                          "Place Order".toUpperCase(),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                  )
+                : Text(
+                    "",
+                  ),
           ],
         ),
         beginOffset: Offset(0, 0.3),
@@ -121,12 +172,9 @@ class _PaymentModePageState extends State<PaymentModePage> {
   Widget buildPaymentType(var icon, String name) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ConfirmOrderPage(),
-          ),
-        );
+        setState(() {
+          clicked = true;
+        });
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 28.0),

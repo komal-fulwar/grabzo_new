@@ -1,8 +1,8 @@
-import 'package:Grabzo/constant/constants.dart';
-import 'package:Grabzo/model/SearchItemBean.dart';
-import 'package:Grabzo/service/Items.dart';
+import 'package:grabzo/constant/constants.dart';
+import 'package:grabzo/model/SearchItemBean.dart';
+import 'package:grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/pages/ProductInfo.dart';
+import 'package:grabzo/pages/ProductInfo.dart';
 
 class SearchSeeAll extends StatefulWidget {
   SearchSeeAll({this.search});

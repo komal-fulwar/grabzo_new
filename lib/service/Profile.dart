@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:Grabzo/constant/constants.dart';
-import 'package:Grabzo/model/ProfilBean.dart';
+import 'package:grabzo/constant/constants.dart';
+import 'package:grabzo/model/ProfilBean.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,12 +22,12 @@ class Profile {
     Map<String, String> headers = {"Content-type": "application/json"};
 
     String json = """{
-    "auth":
-        {
-	         "email": "$email",
-		       "password": "$password"
-	      }
-}""";
+              "auth":
+                  {
+                    "email": "$email",
+                    "password": "$password"
+                  }
+          }""";
 
     Response response = await post(url, headers: headers, body: json);
     if (response.statusCode == 201) {
@@ -82,6 +82,52 @@ class Profile {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<bool> updateAddress(
+      String street1,
+      String street2,
+      String landmark,
+      String city,
+      String state,
+      String country,
+      String pincode,
+      String method) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+
+    Map<String, String> headers = {
+      "Accept": "application/json",
+      "Content-type": "application/json",
+      "Authorization": "Bearer $token"
+    };
+
+    String json = """{ "street1": "$street1",
+                     "street2": "$street2",
+                     "landmark": "$landmark",
+                     "city": "$city",
+                     "state": "$state",
+                     "country": "$country",
+                     "pin": $pincode
+		                } """;
+
+    if ("put" == method) {
+      String url = Constants.apiUrl + "user/profile/address/create";
+      Response response = await post(url, headers: headers, body: json);
+      if (response.statusCode == 201) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      String url = Constants.apiUrl + "user/profile/address/update";
+      Response response = await patch(url, headers: headers, body: json);
+      if (response.statusCode == 200) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 

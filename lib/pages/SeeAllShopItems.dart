@@ -1,14 +1,13 @@
-import 'package:Grabzo/constant/constants.dart';
-import 'package:Grabzo/model/ItemsBean.dart';
-import 'package:Grabzo/model/ShopBean.dart';
-import 'package:Grabzo/service/Items.dart';
+import 'package:grabzo/constant/constants.dart';
+import 'package:grabzo/model/ShopBean.dart';
+import 'package:grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/pages/ProductInfo.dart';
+import 'package:grabzo/pages/ProductInfo.dart';
 
 class SeeAllShopItems extends StatefulWidget {
   SeeAllShopItems(this.shopId, this.shopName);
-  int shopId;
-  String shopName;
+  final int shopId;
+  final String shopName;
   @override
   _SeeAllShopItemsState createState() =>
       _SeeAllShopItemsState(shopId, shopName);
@@ -35,7 +34,8 @@ class _SeeAllShopItemsState extends State<SeeAllShopItems> {
         });
   }
 
-  Scaffold seeAllScaffold(BuildContext context, ShopBean data, String shopName) {
+  Scaffold seeAllScaffold(
+      BuildContext context, ShopBean data, String shopName) {
     return Scaffold(
       backgroundColor: Color(0xFFFAFAFA),
       appBar: AppBar(

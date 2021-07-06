@@ -1,12 +1,7 @@
-import 'package:Grabzo/model/ItemsBean.dart';
-import 'package:Grabzo/model/ShopsBean.dart';
-import 'package:Grabzo/service/Items.dart';
+import 'package:grabzo/model/ShopsBean.dart';
+import 'package:grabzo/service/Items.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/animation/RotationRoute.dart';
-import 'package:Grabzo/animation/ScaleRoute.dart';
-import 'package:Grabzo/pages/CartTab.dart';
-import 'package:Grabzo/pages/ProductInfo.dart';
-import 'package:Grabzo/pages/SeeAll.dart';
+import 'package:grabzo/pages/ProductInfo.dart';
 
 class SeeAllShops extends StatefulWidget {
   @override

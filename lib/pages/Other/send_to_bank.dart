@@ -1,7 +1,7 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/Components/custom_button.dart';
-import 'package:Grabzo/Components/entry_field.dart';
+import 'package:grabzo/Components/custom_button.dart';
+import 'package:grabzo/Components/entry_field.dart';
 // import 'package:flutter_app/Locale/locales.dart';
 
 class SendToBank extends StatefulWidget {

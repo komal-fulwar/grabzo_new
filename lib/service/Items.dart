@@ -1,10 +1,11 @@
 import 'dart:convert';
-import 'package:Grabzo/constant/constants.dart';
-import 'package:Grabzo/model/ItemBean.dart';
-import 'package:Grabzo/model/ItemsBean.dart';
-import 'package:Grabzo/model/SearchItemBean.dart';
-import 'package:Grabzo/model/ShopBean.dart';
-import 'package:Grabzo/model/ShopsBean.dart';
+import 'package:grabzo/constant/constants.dart';
+import 'package:grabzo/model/CartBean.dart';
+import 'package:grabzo/model/ItemBean.dart';
+import 'package:grabzo/model/ItemsBean.dart';
+import 'package:grabzo/model/SearchItemBean.dart';
+import 'package:grabzo/model/ShopBean.dart';
+import 'package:grabzo/model/ShopsBean.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -45,7 +46,7 @@ class Items {
     }
   }
 
-  Future<ItemsBean> getCart() async {
+  Future<CartBean> getCart() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString("token");
     String url = Constants.apiUrl + "cart/get_cart";
@@ -57,7 +58,11 @@ class Items {
     Response response = await get(url, headers: headers);
     if (response.statusCode == 200) {
       Map<String, dynamic> map = jsonDecode(response.body);
-      return ItemsBean.fromJson(map);
+      if (map["msg"] == null) {
+        return CartBean.fromJson(map);
+      } else {
+        return null;
+      }
     } else {
       return null;
     }
@@ -130,10 +135,31 @@ class Items {
           "item_id": $itemId,
           "quantity": $qty,
           "price": $itemPrice
-        }}""";
-    print("id : $itemId | price : $itemPrice");
+        }""";
+    print("Addomg tp Cart id : $itemId | price : $itemPrice");
     Response response = await post(url, headers: headers, body: json);
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  Future<bool> placeOrder(int id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String url = Constants.apiUrl + "order/place_order";
+    Map<String, String> headers = {
+      "Content-type": "application/json",
+      "Authorization": "Bearer $token"
+    };
+
+    String json = """{
+              "cart_id": $id
+            }""";
+
+    Response response = await post(url, headers: headers, body: json);
+    if (response.statusCode == 200) {
       return true;
     } else {
       return false;

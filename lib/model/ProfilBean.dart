@@ -1,4 +1,4 @@
-import 'package:Grabzo/model/Address.dart';
+import 'package:grabzo/model/Address.dart';
 
 class ProfileBean {
   String name;

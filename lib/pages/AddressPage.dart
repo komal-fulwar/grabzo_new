@@ -1,32 +1,47 @@
-import 'package:Grabzo/Theme2/colors.dart';
-import 'package:Grabzo/pages/PaymentMode.dart';
+import 'package:grabzo/Theme2/colors.dart';
+import 'package:grabzo/model/ProfilBean.dart';
+import 'package:grabzo/pages/EditAddress.dart';
+import 'package:grabzo/pages/PaymentMode.dart';
+import 'package:grabzo/service/Profile.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-
-
-class Address {
-  Address(this.heading, this.address);
-  String heading;
-  String address;
-//  int _radioValue;
-}
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AddressPage extends StatefulWidget {
-
-
+  AddressPage(this.cartId);
+  final int cartId;
   @override
   _AddressPageState createState() => _AddressPageState();
 }
 
 class _AddressPageState extends State<AddressPage> {
- 
+  var _getProfile;
+  @override
+  void initState() {
+    super.initState();
+    _getProfile = Profile().getProfile();
+  }
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: _getProfile,
+        builder: (BuildContext context, AsyncSnapshot<ProfileBean> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            if (snapshot.hasError)
+              return Center(child: Text('Error: ${snapshot.error}'));
+            else {
+              return addressPageScaffold(context, snapshot.data);
+            }
+          }
+        });
+    // return addressPageScaffold(context);
+  }
 
-
+  Scaffold addressPageScaffold(BuildContext context, ProfileBean data) {
     return Scaffold(
       body: FadedSlideAnimation(
         Column(
@@ -102,9 +117,7 @@ class _AddressPageState extends State<AddressPage> {
                   return Padding(
                     padding: const EdgeInsets.only(top: 32.0),
                     child: Column(
-
                       children: [
-
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 18.0),
                           child: Column(
@@ -114,30 +127,49 @@ class _AddressPageState extends State<AddressPage> {
                                 height: 10,
                               ),
                               Text(
-                                "MyAddresses",
-                                style: Theme.of(context).textTheme.headline6.copyWith(
-                                    fontSize: 16,
-                                    letterSpacing: 1,
-                                    color: Color(0xffa9a9a9)),
+                                "My Address",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    .copyWith(
+                                        fontSize: 16,
+                                        letterSpacing: 1,
+                                        color: Color(0xffa9a9a9)),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
                               ListTile(
-                                contentPadding: EdgeInsets.symmetric(horizontal: 4),
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 4),
                                 title: Row(
                                   children: [
                                     Text('Home'),
                                     Spacer(),
                                     IconButton(
-                                      icon: const Icon(Icons.add_circle_outline_sharp),
+                                      icon: const Icon(
+                                          Icons.add_circle_outline_sharp),
                                       color: Color(0xff686868),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        var method =
+                                            (null == data.address.street1)
+                                                ? "put"
+                                                : "patch";
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                EditAddress(method),
+                                          ),
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),
                                 subtitle: Text(
-                                  "1124, Patestine Street, Jackson Tower,\nNear City Garden, New York, USA,",
+                                  (null == data.address.street1)
+                                      ? "No Address"
+                                      : "${data.address.street1}, ${data.address.street2}, \n${data.address.landmark}, ${data.address.city} ${data.address.state}, ${data.address.country}, ${data.address.pin}",
                                   style: TextStyle(fontSize: 14),
                                 ),
                               ),
@@ -161,12 +193,21 @@ class _AddressPageState extends State<AddressPage> {
             // ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PaymentModePage(),
-                  ),
-                );
+                if (null == data.address.street1) {
+                  Fluttertoast.showToast(
+                      msg: "Address Cannot be empty",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.BOTTOM,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white);
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaymentModePage(widget.cartId),
+                    ),
+                  );
+                }
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,

@@ -1,11 +1,11 @@
-import 'package:Grabzo/pages/SignInPage.dart';
-import 'package:Grabzo/service/Profile.dart';
+import 'package:grabzo/pages/HomePage.dart';
+import 'package:grabzo/pages/SignInPage.dart';
+import 'package:grabzo/service/Profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/Theme2/colors.dart';
-import 'package:Grabzo/pages/MyAccount.dart';
-import 'package:Grabzo/pages/StoreTab.dart';
-import 'package:Grabzo/pages/profile_menu.dart';
+import 'package:grabzo/Theme2/colors.dart';
+import 'package:grabzo/pages/MyAccount.dart';
+import 'package:grabzo/pages/profile_menu.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -16,8 +16,6 @@ class ProfileTab extends StatefulWidget {
 class _ProfileTabState extends State<ProfileTab> {
   @override
   Widget build(BuildContext context) {
-    // var locale = AppLocalizations.of(context);
-
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -27,7 +25,7 @@ class _ProfileTabState extends State<ProfileTab> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => StoreTab(),
+                  builder: (context) => HomePage(),
                 ),
               );
             },

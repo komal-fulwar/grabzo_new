@@ -1,21 +1,12 @@
-import 'package:Grabzo/pages/HomePage.dart';
-
+import 'package:grabzo/constant/constants.dart';
+import 'package:grabzo/model/CartBean.dart';
+import 'package:grabzo/pages/AddressPage.dart';
+import 'package:grabzo/pages/HomePage.dart';
+import 'package:grabzo/service/Items.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Grabzo/Theme2/colors.dart';
-
-import 'Address.dart';
-
-class Product {
-  Product(this.img, this.name, this.category, this.price, this.count);
-
-  String img;
-  String name;
-  String category;
-  String price;
-  int count;
-}
+import 'package:grabzo/Theme2/colors.dart';
 
 class CartTab extends StatefulWidget {
   @override
@@ -23,22 +14,28 @@ class CartTab extends StatefulWidget {
 }
 
 class _CartTabState extends State<CartTab> {
-  // List<int> count = [1, 1, 1, 1, 1, 1];
-
   @override
   Widget build(BuildContext context) {
-    List<Product> items = [
-      Product("assets/ProductImages/lady finger.png", "FreshLadiesFinger",
-          'Operum Market', '\$32.00', 2),
-      Product("assets/ProductImages/tomato.png", "FreshRedTomatoes",
-          'Calvis Veggies', '\$44.00', 1),
-      Product("assets/ProductImages/Potatoes.png", "MediumPotatoes",
-          'Philinopis', '\$14.00', 2)
-    ];
-    return cartScaffold(context, items);
+    return FutureBuilder(
+        future: Items().getCart(),
+        builder: (BuildContext context, AsyncSnapshot<CartBean> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            if (snapshot.hasError)
+              return Center(child: Text('Error: ${snapshot.error}'));
+            else {
+              if (snapshot.data == null) {
+                return emptyCart();
+              } else {
+                return cartScaffold(context, snapshot.data);
+              }
+            }
+          }
+        });
   }
 
-  Scaffold cartScaffold(BuildContext context, List<Product> items) {
+  Scaffold cartScaffold(BuildContext context, CartBean data) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -67,29 +64,9 @@ class _CartTabState extends State<CartTab> {
             ListView(
               physics: BouncingScrollPhysics(),
               children: [
-                // Spacer(
-                //   flex: 4,
-                // ),
-                // FadedScaleAnimation(
-                //   Image.asset(
-                //     'assets/emptycart.png',
-                //     scale: 3,
-                //   ),
-                // ),
-                // Spacer(
-                //   flex: 2,
-                // ),
-                // Text(
-                //   "Your Cart Is Empty",
-                //   textAlign: TextAlign.center,
-                //   style: Theme.of(context)
-                //       .textTheme
-                //       .subtitle1
-                //       .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
-                // ),
                 ListView.builder(
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: items.length,
+                    itemCount: data.cartItems.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Padding(
@@ -102,7 +79,7 @@ class _CartTabState extends State<CartTab> {
                                 borderRadius: BorderRadius.circular(10),
                                 child: FadedScaleAnimation(
                                   Image.asset(
-                                    items[index].img,
+                                    "assets/ProductImages/lady finger.png",
                                     height: 95,
                                   ),
                                 )),
@@ -114,36 +91,37 @@ class _CartTabState extends State<CartTab> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  items[index].name,
+                                  data.cartItems[index].itemName,
                                   style: Theme.of(context).textTheme.subtitle1,
                                 ),
                                 SizedBox(
                                   height: 8,
                                 ),
-                                Text(
-                                  items[index].category,
-                                  style: Theme.of(context).textTheme.subtitle2,
-                                ),
+                                // Text(
+                                //   items.cartItems[index].category,
+                                //   style: Theme.of(context).textTheme.subtitle2,
+                                // ),
                                 SizedBox(
                                   height: 20,
                                 ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
-                                    buildIconButton(Icons.remove, index, items,
-                                        items[index].count),
+                                    buildIconButton(Icons.remove, index, data,
+                                        data.cartItems[index].cartItemQuantity),
                                     SizedBox(
                                       width: 15,
                                     ),
-                                    Text('${items[index].count}',
+                                    Text(
+                                        '${data.cartItems[index].cartItemQuantity}',
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1),
                                     SizedBox(
                                       width: 15,
                                     ),
-                                    buildIconButton(Icons.add, index, items,
-                                        items[index].count),
+                                    buildIconButton(Icons.add, index, data,
+                                        data.cartItems[index].cartItemQuantity),
                                     SizedBox(
                                       width: 40,
                                     ),
@@ -152,7 +130,7 @@ class _CartTabState extends State<CartTab> {
                               ],
                             ),
                             Spacer(),
-                            Text(items[index].price,
+                            Text(data.cartItems[index].itemPrice.toString(),
                                 textAlign: TextAlign.right,
                                 style: Theme.of(context).textTheme.subtitle1),
                           ],
@@ -172,8 +150,8 @@ class _CartTabState extends State<CartTab> {
                     SizedBox(
                       height: 5,
                     ),
-                    buildAmountRow("CartTotal", '\$ 90.0'),
-                    buildAmountRow("DeliveryFee", '\$ 8.0'),
+                    // buildAmountRow("Cart Total", '\$ 90.0'),
+                    // buildAmountRow("Delivery Fee", '\$ 8.0'),
                     SizedBox(
                       height: 5,
                     ),
@@ -190,7 +168,7 @@ class _CartTabState extends State<CartTab> {
                             children: [
                               InkWell(
                                 child: Text(
-                                  "CheckoutNow",
+                                  "Checkout Now",
                                   style: TextStyle(
                                       fontSize: 20,
                                       color: Colors.white,
@@ -200,17 +178,17 @@ class _CartTabState extends State<CartTab> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => AddressPage(),
+                                      builder: (context) =>
+                                          AddressPage(data.cartId),
                                     ),
                                   );
                                 },
                               ),
-
                               Spacer(
                                 flex: 6,
                               ),
                               InkWell(
-                                child: Text("total",
+                                child: Text("Total",
                                     style: TextStyle(
                                         fontSize: 18,
                                         color: Colors.grey[100],
@@ -219,17 +197,19 @@ class _CartTabState extends State<CartTab> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => AddressPage(),
+                                      builder: (context) =>
+                                          AddressPage(data.cartId),
                                     ),
                                   );
                                 },
                               ),
-
                               Spacer(
                                 flex: 1,
                               ),
                               Text(
-                                '\$ 88.0',
+                                Constants.rupeesSymbol +
+                                    " " +
+                                    data.cartTotal.toString(),
                                 style: TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
@@ -251,6 +231,49 @@ class _CartTabState extends State<CartTab> {
         slideCurve: Curves.linearToEaseOut,
       ),
     );
+  }
+
+  Scaffold emptyCart() {
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(),
+                  ),
+                );
+              },
+            ),
+            elevation: 0,
+            title: Text(
+              "YOUR CART",
+              style: TextStyle(color: kMainTextColor),
+            ),
+            backgroundColor: Colors.white,
+            iconTheme: IconThemeData(color: Colors.black),
+            centerTitle: true),
+        body: Center(
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/emptycart.png',
+                scale: 3,
+              ),
+              Text(
+                "Your Cart Is Empty",
+                textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .subtitle1
+                    .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+        ));
   }
 
   Padding buildAmountRow(String text, String price) {
