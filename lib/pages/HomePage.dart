@@ -20,33 +20,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _children[_currentIndex], // new
+      body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        onTap: onTabTapped, // new
-        currentIndex: _currentIndex, // new
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
         items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'
+              // title: Text(
+              //   'Home',
+              //   style: TextStyle(color: Color(0xFF2c2b2b)),
+              // ),
+              ),
+          BottomNavigationBarItem(icon: Icon(Icons.card_giftcard), label: 'Cart'
+              // title: Text(
+              //   'Cart',
+              //   style: TextStyle(color: Color(0xFF2c2b2b)),
+              // ),
+              ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text(
-              'Home',
-              style: TextStyle(color: Color(0xFF2c2b2b)),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.card_giftcard),
-            title: Text(
-              'Cart',
-              style: TextStyle(color: Color(0xFF2c2b2b)),
-            ),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(FontAwesomeIcons.user),
-            title: Text(
-              'Account',
-              style: TextStyle(color: Color(0xFF2c2b2b)),
-            ),
-          ),
+              icon: Icon(FontAwesomeIcons.user), label: 'Account'
+              // title: Text(
+              //   'Account',
+              //   style: TextStyle(color: Color(0xFF2c2b2b)),
+              // ),
+              ),
         ],
         selectedItemColor: Color(0xff42950a),
       ),

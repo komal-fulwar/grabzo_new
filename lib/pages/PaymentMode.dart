@@ -1,4 +1,5 @@
 import 'package:grabzo/pages/ConfirmOrder.dart';
+import 'package:grabzo/pages/LoadingOverlay.dart';
 import 'package:grabzo/service/Items.dart';
 import 'package:animation_wrappers/Animations/faded_translation_animation.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
@@ -102,29 +103,24 @@ class _PaymentModePageState extends State<PaymentModePage> {
             (clicked)
                 ? GestureDetector(
                     onTap: () {
-                      // final overlay = LoadingOverlay.of(context);
-                      // await overlay.during(
-                      Items().placeOrder(widget.cartId).then((value) async => {
-                                if (value)
-                                  {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            ConfirmOrderPage(),
-                                      ),
-                                    )
-                                  }
-                                else
-                                  Fluttertoast.showToast(
-                                      msg: "Error Placing Order",
-                                      toastLength: Toast.LENGTH_SHORT,
-                                      gravity: ToastGravity.BOTTOM,
-                                      backgroundColor: Colors.red,
-                                      textColor: Colors.white)
-                              })
-                          // )
-                          ;
+                      Items().placeOrder(widget.cartId).then((value) => {
+                            if (value)
+                              {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ConfirmOrderPage(),
+                                  ),
+                                )
+                              }
+                            else
+                              Fluttertoast.showToast(
+                                  msg: "Error Placing Order",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.BOTTOM,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white)
+                          });
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,

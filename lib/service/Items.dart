@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:grabzo/constant/constants.dart';
 import 'package:grabzo/model/CartBean.dart';
+import 'package:grabzo/model/CategoryBean.dart';
 import 'package:grabzo/model/ItemBean.dart';
 import 'package:grabzo/model/ItemsBean.dart';
 import 'package:grabzo/model/SearchItemBean.dart';
@@ -136,7 +137,7 @@ class Items {
           "quantity": $qty,
           "price": $itemPrice
         }""";
-    print("Addomg tp Cart id : $itemId | price : $itemPrice");
+    print("Add to Cart id : $itemId | price : $itemPrice");
     Response response = await post(url, headers: headers, body: json);
     if (response.statusCode == 200) {
       return true;
@@ -158,11 +159,29 @@ class Items {
               "cart_id": $id
             }""";
 
-    Response response = await post(url, headers: headers, body: json);
+    // Response response = await post(url, headers: headers, body: json);
+    // if (response.statusCode == 200) {
+    return true;
+    // } else {
+    //   return false;
+    // }
+  }
+
+  Future<CategoryBean> getAllCategory() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String url = Constants.apiUrl + "categories";
+    Map<String, String> headers = {
+      "Accept": "application/json",
+      "Authorization": "Bearer $token"
+    };
+
+    Response response = await get(url, headers: headers);
     if (response.statusCode == 200) {
-      return true;
+      Map<String, dynamic> map = jsonDecode(response.body);
+      return CategoryBean.fromJson(map);
     } else {
-      return false;
+      return null;
     }
   }
 }
