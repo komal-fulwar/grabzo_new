@@ -1,3 +1,4 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:grabzo/constant/constants.dart';
 import 'package:grabzo/model/CartBean.dart';
 import 'package:grabzo/pages/AddressPage.dart';
@@ -25,7 +26,7 @@ class _CartTabState extends State<CartTab> {
             if (snapshot.hasError)
               return Center(child: Text('Error: ${snapshot.error}'));
             else {
-              if (snapshot.data == null) {
+              if (snapshot.data == null || snapshot.data.cartCount == 0) {
                 return emptyCart();
               } else {
                 return cartScaffold(context, snapshot.data);
@@ -295,7 +296,8 @@ class _CartTabState extends State<CartTab> {
     );
   }
 
-  Container buildIconButton(IconData icon, int index, items, count) {
+  Container buildIconButton(
+      IconData icon, int index, CartBean items, int count) {
     return Container(
       width: 35,
       height: 35,
@@ -304,13 +306,22 @@ class _CartTabState extends State<CartTab> {
           border: Border.all(color: Colors.grey[400], width: 0)),
       child: IconButton(
         onPressed: () {
-          setState(() {
-            if (icon == Icons.remove) {
-              if (count[index] > 0) count[index]--;
-            } else {
-              count[index]++;
-            }
-          });
+          Items()
+              .addToCart(items.cartItems[index].cartItemId,
+                  items.cartItems[index].itemPrice, 1)
+              .then((value) => {
+                    if (value)
+                      {setState(() {})}
+                    else
+                      {
+                        Fluttertoast.showToast(
+                            msg: "Error",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white)
+                      }
+                  });
         },
         icon: Icon(
           icon,
