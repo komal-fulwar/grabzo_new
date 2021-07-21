@@ -173,7 +173,7 @@ class _MyAccountState extends State<MyAccount> {
                       ],
                     ),
                     subtitle: Text(
-                      (null == data.address.street1)
+                      (null == data.address || null == data.address.street1)
                           ? "No Address"
                           : "${data.address.street1}, ${data.address.street2}, \n${data.address.landmark}, ${data.address.city} ${data.address.state}, ${data.address.country}, ${data.address.pin}",
                       style: TextStyle(fontSize: 14),

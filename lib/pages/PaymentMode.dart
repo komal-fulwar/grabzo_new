@@ -1,7 +1,7 @@
 import 'package:grabzo/pages/ConfirmOrder.dart';
 import 'package:grabzo/pages/LoadingOverlay.dart';
 import 'package:grabzo/service/Items.dart';
-import 'package:animation_wrappers/Animations/faded_translation_animation.dart';
+//import 'package:animation_wrappers/Animations/faded_translation_animation.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
 import 'package:grabzo/Theme2/colors.dart';

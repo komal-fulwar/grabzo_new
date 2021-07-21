@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:grabzo/constant/constants.dart';
 import 'package:grabzo/model/CartBean.dart';
+import 'package:grabzo/model/CategoriesBean.dart';
 import 'package:grabzo/model/CategoryBean.dart';
 import 'package:grabzo/model/ItemBean.dart';
 import 'package:grabzo/model/ItemsBean.dart';
@@ -167,7 +168,7 @@ class Items {
     // }
   }
 
-  Future<CategoryBean> getAllCategory() async {
+  Future<CategoriesBean> getAllCategory() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String token = prefs.getString("token");
     String url = Constants.apiUrl + "categories";
@@ -179,7 +180,7 @@ class Items {
     Response response = await get(url, headers: headers);
     if (response.statusCode == 200) {
       Map<String, dynamic> map = jsonDecode(response.body);
-      return CategoryBean.fromJson(map);
+      return CategoriesBean.fromJson(map);
     } else {
       return null;
     }

@@ -4,7 +4,7 @@ import 'package:grabzo/animation/ScaleRoute.dart';
 import 'package:grabzo/pages/SignInPage.dart';
 import 'package:grabzo/widgets/PopularFoodsWidget.dart';
 import 'package:grabzo/widgets/SearchWidget.dart';
-import 'package:grabzo/widgets/TopMenus.dart';
+import 'package:grabzo/widgets/Categories.dart';
 
 class StoreTab extends StatefulWidget {
   @override
@@ -41,7 +41,7 @@ class _StoreTabState extends State<StoreTab> {
         child: Column(
           children: <Widget>[
             SearchWidget(),
-            TopMenus(),
+            Catgories(),
 
             Shops(),
             Divider(
