@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:grabzo/constant/constants.dart';
 import 'package:grabzo/model/CartBean.dart';
 import 'package:grabzo/model/CategoriesBean.dart';
-import 'package:grabzo/model/CategoryBean.dart';
 import 'package:grabzo/model/ItemBean.dart';
 import 'package:grabzo/model/ItemsBean.dart';
 import 'package:grabzo/model/SearchItemBean.dart';
@@ -133,25 +132,10 @@ class Items {
       "Content-Type": "application/json",
       "Authorization": "Bearer $token"
     };
-
-    Map data = {
-      'item_id': itemId,
-      'quantity': qty,
-      'price': itemPrice,
-    };
-    // String json =
-    //     """{ "item_id": $itemId, "quantity": $qty, "price": $itemPrice }""";
-    // print("Add to Cart id : $itemId | price : $itemPrice");
-    // Response response = await post(url, headers: headers, body: json);
-
-    var body = json.encode(data);
-
-    var response = await http.post(url,
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer $token"
-        },
-        body: body);
+    String json =
+        """{ "item_id": $itemId, "quantity": $qty, "price": $itemPrice }""";
+    print("Add to Cart id : $itemId | price : $itemPrice");
+    Response response = await post(url, headers: headers, body: json);
 
     if (response.statusCode == 200) {
       return true;
@@ -169,16 +153,14 @@ class Items {
       "Authorization": "Bearer $token"
     };
 
-    String json = """{
-              "cart_id": $id
-            }""";
+    String json = """{ "cart_id": $id }""";
 
-    // Response response = await post(url, headers: headers, body: json);
-    // if (response.statusCode == 200) {
-    return true;
-    // } else {
-    //   return false;
-    // }
+    Response response = await post(url, headers: headers, body: json);
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<CategoriesBean> getAllCategory() async {

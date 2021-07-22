@@ -1,4 +1,5 @@
 import 'package:grabzo/pages/HomePage.dart';
+import 'package:grabzo/pages/LoadingOverlay.dart';
 import 'package:grabzo/service/Profile.dart';
 import 'package:grabzo/constant/colors.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
@@ -228,8 +229,9 @@ class _EditAddressState extends State<EditAddress> {
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
-                  onPressed: () {
-                    Profile()
+                  onPressed: () async {
+                    final overlay = LoadingOverlay.of(context);
+                    await overlay.during(Profile()
                         .updateAddress(
                             _street1.text,
                             _street2.text,
@@ -262,7 +264,7 @@ class _EditAddressState extends State<EditAddress> {
                                           backgroundColor: Colors.red,
                                           textColor: Colors.white)
                                     }
-                            });
+                            }));
                   },
                 )
               ],

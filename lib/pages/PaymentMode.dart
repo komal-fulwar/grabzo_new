@@ -102,25 +102,28 @@ class _PaymentModePageState extends State<PaymentModePage> {
             Spacer(),
             (clicked)
                 ? GestureDetector(
-                    onTap: () {
-                      Items().placeOrder(widget.cartId).then((value) => {
-                            if (value)
-                              {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ConfirmOrderPage(),
-                                  ),
-                                )
-                              }
-                            else
-                              Fluttertoast.showToast(
-                                  msg: "Error Placing Order",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.white)
-                          });
+                    onTap: () async {
+                      final overlay = LoadingOverlay.of(context);
+                      await overlay.during(
+                          Items().placeOrder(widget.cartId).then((value) => {
+                                if (value)
+                                  {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            ConfirmOrderPage(),
+                                      ),
+                                    )
+                                  }
+                                else
+                                  Fluttertoast.showToast(
+                                      msg: "Error Placing Order",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white)
+                              }));
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width,

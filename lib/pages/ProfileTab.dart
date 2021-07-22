@@ -5,8 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:grabzo/Theme2/colors.dart';
 import 'package:grabzo/pages/MyAccount.dart';
-import 'package:grabzo/pages/profile_menu.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:grabzo/pages/ProfileMenu.dart';
 
 class ProfileTab extends StatefulWidget {
   @override
@@ -46,34 +45,31 @@ class _ProfileTabState extends State<ProfileTab> {
               height: 115,
               width: 115,
               child: Stack(
+                clipBehavior: Clip.none,
                 fit: StackFit.expand,
-                overflow: Overflow.visible,
                 children: [
                   CircleAvatar(
                     backgroundImage:
                         AssetImage("assets/images/profile_picture_avatar.png"),
                   ),
-                  Positioned(
-                    right: -16,
-                    bottom: 0,
-                    child: SizedBox(
-                      height: 46,
-                      width: 46,
-                      child: FlatButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                          side: BorderSide(color: Colors.white),
-                        ),
-                        color: Color(0xFFF5F6F9),
-                        onPressed: () {},
-                        child: SvgPicture.asset("assets/icons/Camera Icon.svg"),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
             SizedBox(height: 20),
+            ProfileMenu(
+              text: "My Orders",
+              icon: "assets/icons/Parcel.svg",
+              press: () {
+                {
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => MyAccount(),
+                  //   ),
+                  // );
+                }
+              },
+            ),
             ProfileMenu(
               text: "My Account",
               icon: "assets/icons/User Icon.svg",

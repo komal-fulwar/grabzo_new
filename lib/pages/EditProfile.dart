@@ -1,4 +1,5 @@
 import 'package:grabzo/pages/HomePage.dart';
+import 'package:grabzo/pages/LoadingOverlay.dart';
 import 'package:grabzo/service/Profile.dart';
 import 'package:grabzo/constant/colors.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
@@ -46,13 +47,13 @@ class _EditProfileState extends State<EditProfile> {
                     SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      "Edit Profile",
-                      style: Theme.of(context).textTheme.headline6.copyWith(
-                          fontSize: 16,
-                          letterSpacing: 1,
-                          color: Color(0xffa9a9a9)),
-                    ),
+                    // Text(
+                    //   "Edit Profile",
+                    //   style: Theme.of(context).textTheme.headline6.copyWith(
+                    //       fontSize: 16,
+                    //       letterSpacing: 1,
+                    //       color: Color(0xffa9a9a9)),
+                    // ),
                     SizedBox(
                       height: 30,
                     ),
@@ -158,9 +159,9 @@ class _EditProfileState extends State<EditProfile> {
                     shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
-                  onPressed: () {
-                    print('Pressed');
-                    Profile()
+                  onPressed: () async {
+                    final overlay = LoadingOverlay.of(context);
+                    await overlay.during(Profile()
                         .updateProfile(_name.text, _email.text, _number.text,
                             _password.text)
                         .then((value) => {
@@ -177,10 +178,8 @@ class _EditProfileState extends State<EditProfile> {
                                         MaterialPageRoute(
                                             builder: (context) => HomePage()),
                                       )
-                                      // Navigator.pop(context)
                                     }
                                   : {
-                                      //pop up error
                                       Fluttertoast.showToast(
                                           msg: "Wrong Username Or Password",
                                           toastLength: Toast.LENGTH_SHORT,
@@ -188,7 +187,7 @@ class _EditProfileState extends State<EditProfile> {
                                           backgroundColor: Colors.red,
                                           textColor: Colors.white)
                                     }
-                            });
+                            }));
                   },
                 )
               ],

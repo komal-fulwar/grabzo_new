@@ -8,7 +8,7 @@ class SearchWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
       child: TextFormField(
-        textInputAction: TextInputAction.done,
+        textInputAction: TextInputAction.search,
         onFieldSubmitted: (value) {
           if ("" != value) {
             Navigator.push(
