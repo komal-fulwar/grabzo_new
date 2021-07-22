@@ -10,6 +10,7 @@ import 'package:grabzo/model/ShopBean.dart';
 import 'package:grabzo/model/ShopsBean.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
 class Items {
   Future<ItemsBean> getAllItems() async {
@@ -129,17 +130,29 @@ class Items {
     String token = prefs.getString("token");
     String url = Constants.apiUrl + "cart/add_to_cart";
     Map<String, String> headers = {
-      "Content-type": "application/json",
+      "Content-Type": "application/json",
       "Authorization": "Bearer $token"
     };
 
-    String json = """{
-          "item_id": $itemId,
-          "quantity": $qty,
-          "price": $itemPrice
-        }""";
-    print("Add to Cart id : $itemId | price : $itemPrice");
-    Response response = await post(url, headers: headers, body: json);
+    Map data = {
+      'item_id': itemId,
+      'quantity': qty,
+      'price': itemPrice,
+    };
+    // String json =
+    //     """{ "item_id": $itemId, "quantity": $qty, "price": $itemPrice }""";
+    // print("Add to Cart id : $itemId | price : $itemPrice");
+    // Response response = await post(url, headers: headers, body: json);
+
+    var body = json.encode(data);
+
+    var response = await http.post(url,
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $token"
+        },
+        body: body);
+
     if (response.statusCode == 200) {
       return true;
     } else {
