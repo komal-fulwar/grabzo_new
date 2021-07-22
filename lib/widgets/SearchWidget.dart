@@ -7,7 +7,18 @@ class SearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
-      child: TextField(
+      child: TextFormField(
+        textInputAction: TextInputAction.done,
+        onFieldSubmitted: (value) {
+          if ("" != value) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SearchSeeAll(search: value),
+              ),
+            );
+          }
+        },
         controller: _search,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -26,7 +37,6 @@ class SearchWidget extends StatelessWidget {
           fillColor: Color(0xFFFAFAFA),
           suffixIcon: IconButton(
             icon: const Icon(Icons.arrow_forward),
-            tooltip: 'Increase volume by 10',
             onPressed: () {
               Navigator.push(
                 context,

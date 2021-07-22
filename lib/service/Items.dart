@@ -198,4 +198,22 @@ class Items {
       return null;
     }
   }
+
+  Future<bool> cartItemQtyReduce(int itemId) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String url = Constants.apiUrl + "cart/delete_item_from_cart/$itemId";
+    Map<String, String> headers = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token"
+    };
+
+    Response response = await delete(url, headers: headers);
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

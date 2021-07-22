@@ -306,22 +306,40 @@ class _CartTabState extends State<CartTab> {
           border: Border.all(color: Colors.grey[400], width: 0)),
       child: IconButton(
         onPressed: () {
-          Items()
-              .addToCart(items.cartItems[index].cartItemId,
-                  items.cartItems[index].itemPrice, 1)
-              .then((value) => {
-                    if (value)
-                      {setState(() {})}
-                    else
-                      {
-                        Fluttertoast.showToast(
-                            msg: "Error",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white)
-                      }
-                  });
+          if (icon == Icons.remove) {
+            Items()
+                .cartItemQtyReduce(items.cartItems[index].itemId)
+                .then((value) => {
+                      if (value)
+                        {setState(() {})}
+                      else
+                        {
+                          Fluttertoast.showToast(
+                              msg: "Error",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white)
+                        }
+                    });
+          } else {
+            Items()
+                .addToCart(items.cartItems[index].itemId,
+                    items.cartItems[index].itemPrice, 1)
+                .then((value) => {
+                      if (value)
+                        {setState(() {})}
+                      else
+                        {
+                          Fluttertoast.showToast(
+                              msg: "Error",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white)
+                        }
+                    });
+          }
         },
         icon: Icon(
           icon,
