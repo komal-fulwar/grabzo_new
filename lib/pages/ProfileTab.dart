@@ -51,7 +51,7 @@ class _ProfileTabState extends State<ProfileTab> {
                 children: [
                   CircleAvatar(
                     backgroundImage:
-                        AssetImage("assets/images/Profile Image.png"),
+                        AssetImage("assets/images/profile_picture_avatar.png"),
                   ),
                   Positioned(
                     right: -16,

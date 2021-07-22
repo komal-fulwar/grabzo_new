@@ -146,12 +146,12 @@ class _ProductInfoState extends State<ProductInfo> {
                       .then((value) => {
                             if (value)
                               {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CartTab(),
-                                  ),
-                                )
+                                Fluttertoast.showToast(
+                                    msg: "Item added to cart Successfully",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    backgroundColor: Colors.green,
+                                    textColor: Colors.white)
                               }
                             else
                               {
