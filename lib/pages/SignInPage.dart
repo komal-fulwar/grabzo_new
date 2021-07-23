@@ -15,6 +15,7 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  bool _isHidden = true;
   @override
   Widget build(BuildContext context) {
     String defaultFontFamily = 'Roboto-Light.ttf';
@@ -83,7 +84,7 @@ class _SignInPageState extends State<SignInPage> {
                       ),
                       filled: true,
                       prefixIcon: Icon(
-                        Icons.phone,
+                        Icons.mail_outline,
                         color: Color(0xFF666666),
                         size: defaultIconSize,
                       ),
@@ -101,7 +102,16 @@ class _SignInPageState extends State<SignInPage> {
                   TextField(
                     controller: _password,
                     showCursor: true,
+                      obscureText: _isHidden,
                     decoration: InputDecoration(
+                      suffix: InkWell(
+                        onTap: _togglePasswordView,
+                        child: Icon(
+                          _isHidden
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                      ),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                         borderSide: BorderSide(
@@ -197,7 +207,13 @@ class _SignInPageState extends State<SignInPage> {
           ],
         ),
       ),
-    );
+    )
+    ;
+  }
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
   }
 }
 
@@ -271,4 +287,5 @@ class SignInButtonWidget extends StatelessWidget {
           }),
     );
   }
+
 }
