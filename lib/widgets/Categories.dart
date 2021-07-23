@@ -1,3 +1,4 @@
+import 'package:grabzo/pages/SeeAllShops.dart';
 import 'package:flutter/material.dart';
 import 'package:grabzo/model/CategoriesBean.dart';
 import 'package:grabzo/model/CategoryBean.dart';
@@ -33,6 +34,7 @@ class _CatgoriesState extends State<Catgories> {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
+
           for (var cat in data.categories)
             InkWell(
               onTap: () {},
@@ -40,7 +42,7 @@ class _CatgoriesState extends State<Catgories> {
                 children: <Widget>[
                   Container(
                     padding:
-                        EdgeInsets.only(left: 10, right: 5, top: 5, bottom: 5),
+                        EdgeInsets.only(left: 15, right: 5, top: 5, bottom: 5),
                     decoration: new BoxDecoration(boxShadow: [
                       new BoxShadow(
                         color: Color(0xffeefae2),
@@ -75,9 +77,18 @@ class _CatgoriesState extends State<Catgories> {
                 ],
               ),
             ),
-          // OutlineButton.icon()
+          Padding(
+            padding: const EdgeInsets.only(bottom:30.0),
+            child: IconButton(
+              icon: const Icon(Icons.add_circle_outline_sharp),
+              color: Colors.grey,
+              iconSize: 35,
+              onPressed: () {},
+            ),
+          ),
         ],
       ),
+
     );
   }
 }
