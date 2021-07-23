@@ -1,5 +1,8 @@
+import 'package:grabzo/Theme2/colors.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
+
+import 'HomePage.dart';
 // import 'package:flutter_app/Locale/locales.dart';
 // import 'package:groshop/Pages/Other/add_review.dart';
 
@@ -31,8 +34,20 @@ class _MyOrdersState extends State<MyOrders> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60),
         child: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back, color: Colors.black,),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => HomePage(),
+                ),
+              );
+            },
+          ),
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          title: Text("myOrders"),
+          title: Text("MyOrders",
+            style: TextStyle(color: kMainTextColor),),
           centerTitle: true,
         ),
       ),
@@ -57,7 +72,7 @@ class _MyOrdersState extends State<MyOrders> {
                         buildGreyColumn(context, "Payment", "price"),
                         Spacer(),
                         buildGreyColumn(context, "OrderStatus", "Dispatched",
-                            text2Color: Theme.of(context).primaryColor),
+                            text2Color: Color(0xFF39c526)),
                         Spacer(),
 
                       ],
@@ -142,7 +157,7 @@ class _MyOrdersState extends State<MyOrders> {
                                     "OrderedItems",
                                     style: Theme.of(context).textTheme.subtitle2,
                                   ),
-                                  buildAmountRow("locale.freshLadiesFinger", '\$14.00'),
+                                  buildAmountRow("FreshLadiesFinger", '\$14.00'),
                                   SizedBox(
                                     height: 5,
                                   ),
@@ -156,9 +171,9 @@ class _MyOrdersState extends State<MyOrders> {
                                   left: 8.0, right: 8, bottom: 10, top: 5),
                               child: Column(
                                 children: [
-                                  buildAmountRow("locale.deliveryFee", '\$4.50'),
-                                  buildAmountRow("locale.promoCode", '-\$2.00'),
-                                  buildAmountRow("locale.amountToPay", '\$30.50',
+                                  buildAmountRow("DeliveryFee", '\$4.50'),
+                                  buildAmountRow("PromoCode", '-\$2.00'),
+                                  buildAmountRow("AmountToPay", '\$30.50',
                                       fontWeight: FontWeight.w700),
                                 ],
                               ),
@@ -192,7 +207,7 @@ class _MyOrdersState extends State<MyOrders> {
             icon,
             size: 20,
             color: !disabled
-                ? Theme.of(context).primaryColor
+                ? Color(0xFF39c526)
                 : Theme.of(context).scaffoldBackgroundColor,
           ));
 
