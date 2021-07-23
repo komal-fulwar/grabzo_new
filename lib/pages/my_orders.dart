@@ -49,118 +49,133 @@ class _MyOrdersState extends State<MyOrders> {
               color: Colors.white,
               child: Column(
                 children: [
-                  buildItem(context, 'assets/seller1.png', "locale.operummarket",
+                  buildItem(context, 'assets/seller1.png', "Operummarket",
                       '2 items'),
-                  buildOrderInfoRow(context, '\$30.50', "locale.cashOnDelivery",
-                      "locale.dispatched",
-                      borderRadius: 0),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12.0, vertical: 12),
-                    child: Column(
+                  ExpansionTile(
+                    title:Row(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                        buildGreyColumn(context, "Payment", "price"),
+                        Spacer(),
+                        buildGreyColumn(context, "OrderStatus", "Dispatched",
+                            text2Color: Theme.of(context).primaryColor),
+                        Spacer(),
+
+                      ],
+                    ),
+                    children: <Widget>[
+                       Column(
                           children: [
-                            buildStatusIcon(Icons.done_all),
-                            Text('------'),
-                            buildStatusIcon(Icons.assignment_returned),
-                            Text('------'),
-                            buildStatusIcon(Icons.directions_bike),
-                            Text('------'),
-                            buildStatusIcon(Icons.navigation),
-                            Text('------'),
-                            buildStatusIcon(Icons.home, disabled: true),
+                            Container(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 12.0, vertical: 12),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        buildStatusIcon(Icons.done_all),
+                                        Text('------'),
+                                        buildStatusIcon(Icons.assignment_returned),
+                                        Text('------'),
+                                        buildStatusIcon(Icons.directions_bike),
+                                        Text('------'),
+                                        buildStatusIcon(Icons.navigation),
+                                        Text('------'),
+                                        buildStatusIcon(Icons.home, disabled: true),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            " placed" + '  ',
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          Text(
+                                            "packing",
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          Text(
+                                            "dispatched",
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          Text(
+                                            "track",
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                          Text(
+                                            ' ' + "delivered",
+                                            style: TextStyle(fontSize: 12),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              color: Colors.grey[100],
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 12),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "OrderedItems",
+                                    style: Theme.of(context).textTheme.subtitle2,
+                                  ),
+                                  buildAmountRow("FreshRedOnios", '\$14.00'),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text('Qnt. 1',
+                                      style: Theme.of(context).textTheme.subtitle2),
+                                  Text(
+                                    "OrderedItems",
+                                    style: Theme.of(context).textTheme.subtitle2,
+                                  ),
+                                  buildAmountRow("locale.freshLadiesFinger", '\$14.00'),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Text('Qnt. 1',
+                                      style: Theme.of(context).textTheme.subtitle2),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 8.0, right: 8, bottom: 10, top: 5),
+                              child: Column(
+                                children: [
+                                  buildAmountRow("locale.deliveryFee", '\$4.50'),
+                                  buildAmountRow("locale.promoCode", '-\$2.00'),
+                                  buildAmountRow("locale.amountToPay", '\$30.50',
+                                      fontWeight: FontWeight.w700),
+                                ],
+                              ),
+                            )
                           ],
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                " placed" + '  ',
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Text(
-                                "packing",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Text(
-                                "dispatched",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Text(
-                                "track",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              Text(
-                                ' ' + "delivered",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+
+
+
+                    ],
                   ),
-                  Container(
-                    color: Colors.grey[100],
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 8.0, horizontal: 12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "locale.orderedItems",
-                          style: Theme.of(context).textTheme.subtitle2,
-                        ),
-                        buildAmountRow("locale.freshRedOnios", '\$14.00'),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text('Qnt. 1',
-                            style: Theme.of(context).textTheme.subtitle2),
-                        Text(
-                          "locale.orderedItems",
-                          style: Theme.of(context).textTheme.subtitle2,
-                        ),
-                        buildAmountRow("locale.freshLadiesFinger", '\$14.00'),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text('Qnt. 1',
-                            style: Theme.of(context).textTheme.subtitle2),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 8.0, right: 8, bottom: 10, top: 5),
-                    child: Column(
-                      children: [
-                        buildAmountRow("locale.deliveryFee", '\$4.50'),
-                        buildAmountRow("locale.promoCode", '-\$2.00'),
-                        buildAmountRow("locale.amountToPay", '\$30.50',
-                            fontWeight: FontWeight.w700),
-                      ],
-                    ),
-                  )
+
+
                 ],
               ),
             ),
-            ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: 4,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return buildCompleteCard(context, myOrders[index].img,
-                      myOrders[index].name, '3 items');
-                }),
+
           ],
         ),
         beginOffset: Offset(0, 0.3),
@@ -181,55 +196,10 @@ class _MyOrdersState extends State<MyOrders> {
                 : Theme.of(context).scaffoldBackgroundColor,
           ));
 
-  GestureDetector buildCompleteCard(
-      BuildContext context, String img, String item, String category) {
-    // var locale = AppLocalizations.of(context);
-    return GestureDetector(
-      onTap: () {
-        // Navigator.push(
-        //     context, MaterialPageRoute(builder: (context) => AddReviewPage()));
-      },
-      child: Card(
-        shape: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide.none),
-        margin: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-        color: Colors.white,
-        elevation: 1,
-        child: Column(
-          children: [
-            buildItem(context, img, item, category),
-            buildOrderInfoRow(
-                context, '\$30.50'," locale.cashOnDelivery"," locale.delivered"),
-          ],
-        ),
-      ),
-    );
+
   }
 
-  Container buildOrderInfoRow(BuildContext context, String price,
-      String paymentMode, String orderStatus,
-      {double borderRadius = 8}) {
-    // var locale = AppLocalizations.of(context);
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius:
-        BorderRadius.vertical(bottom: Radius.circular(borderRadius)),
-        color: Colors.grey[100],
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 11.0, vertical: 12),
-      child: Row(
-        children: [
-          buildGreyColumn(context, "locale.payment", price),
-          Spacer(),
-          buildGreyColumn(context, "locale.paymentMode", paymentMode),
-          Spacer(),
-          buildGreyColumn(context, "locale.orderStatus", orderStatus,
-              text2Color: Theme.of(context).primaryColor),
-        ],
-      ),
-    );
-  }
+
 
   Padding buildItem(
       BuildContext context, String img, String name, String category) {
@@ -265,7 +235,7 @@ class _MyOrdersState extends State<MyOrders> {
                     style: Theme.of(context).textTheme.subtitle2,
                   ),
                   SizedBox(height: 16),
-                  Text("locale.orderedOn" + ' 23 Jun, 11:40',
+                  Text("OrderedOn" +' '+ ' 23 Jun, 11:40',
                       style: Theme.of(context)
                           .textTheme
                           .subtitle2
@@ -279,7 +249,7 @@ class _MyOrdersState extends State<MyOrders> {
             end: 0,
             bottom: 0,
             child: Text(
-              "locale.orderID" + ' 2254126',
+              "orderID" + ' 2254126',
               textAlign: TextAlign.right,
               style: Theme.of(context)
                   .textTheme
@@ -333,4 +303,4 @@ class _MyOrdersState extends State<MyOrders> {
       ],
     );
   }
-}
+

@@ -57,9 +57,9 @@ class _SearchSeeAllState extends State<SearchSeeAll> {
           centerTitle: true),
       body: GridView.count(
         primary: false,
-        padding: const EdgeInsets.all(3),
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
+        padding: const EdgeInsets.all(0),
+        crossAxisSpacing: 0,
+        mainAxisSpacing: 0,
         crossAxisCount: 2,
         children: <Widget>[
           for (var item in data.search)

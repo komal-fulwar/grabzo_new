@@ -7,6 +7,8 @@ import 'package:grabzo/Theme2/colors.dart';
 import 'package:grabzo/pages/MyAccount.dart';
 import 'package:grabzo/pages/ProfileMenu.dart';
 
+import 'my_orders.dart';
+
 class ProfileTab extends StatefulWidget {
   @override
   _ProfileTabState createState() => _ProfileTabState();
@@ -61,12 +63,12 @@ class _ProfileTabState extends State<ProfileTab> {
               icon: "assets/icons/Parcel.svg",
               press: () {
                 {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (context) => MyAccount(),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyOrders(),
+                    ),
+                  );
                 }
               },
             ),

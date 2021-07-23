@@ -123,8 +123,45 @@ class _ProductInfoState extends State<ProductInfo> {
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 20)),
                         Spacer(),
+                        Container(
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: Colors.green),
+                          child: Row(
+                            children: [
+                              InkWell(
+                                  onTap: () {},
+                                  child: Icon(
+                                    Icons.remove,
+                                    color: Colors.white,
+                                    size: 16,
+                                  )),
+                              Container(
+                                margin: EdgeInsets.symmetric(horizontal: 3),
+                                padding:
+                                EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(3),
+                                    color: Colors.white),
+                                child: Text(
+                                  '0',
+                                  style: TextStyle(color: Colors.black, fontSize: 16),
+                                ),
+                              ),
+                              InkWell(
+                                  onTap: () {},
+                                  child: Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                    size: 16,
+                                  )),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
+
                     SizedBox(
                       height: 12,
                     ),
