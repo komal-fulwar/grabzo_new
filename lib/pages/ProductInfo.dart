@@ -127,49 +127,55 @@ class _ProductInfoState extends State<ProductInfo> {
                                 fontWeight: FontWeight.w600, fontSize: 20)),
                         Spacer(),
                         Container(
-                          padding: EdgeInsets.all(3),
+                          padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
                               color: Colors.green),
                           child: Row(
                             children: [
-                              InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      if (_qty > 1) {
-                                        _qty = _qty - 1;
-                                      }
-                                    });
-                                  },
-                                  child: Icon(
-                                    Icons.remove,
-                                    color: Colors.white,
-                                    size: 16,
-                                  )),
+                              Padding(
+                                padding: const EdgeInsets.only(left:10.0, right: 10.0),
+                                child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        if (_qty > 1) {
+                                          _qty = _qty - 1;
+                                        }
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.remove,
+                                      color: Colors.white,
+                                      size: 16,
+                                    )),
+                              ),
                               Container(
                                 margin: EdgeInsets.symmetric(horizontal: 3),
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 3, vertical: 2),
+                                    horizontal: 8, vertical: 2),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(3),
                                     color: Colors.white),
                                 child: Text(
                                   _qty.toString(),
                                   style: TextStyle(
-                                      color: Colors.black, fontSize: 16),
+                                      color: Colors.black, fontSize: 15),
                                 ),
                               ),
-                              InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      _qty = _qty + 1;
-                                    });
-                                  },
-                                  child: Icon(
-                                    Icons.add,
-                                    color: Colors.white,
-                                    size: 16,
-                                  )),
+                              Padding(
+                                padding: EdgeInsets.only(left:10.0, right: 10.0),
+                                child: InkWell(
+                                    onTap: () {
+                                      setState(() {
+                                        _qty = _qty + 1;
+                                      });
+                                    },
+                                    child: Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                      size: 16,
+                                    )),
+                              ),
                             ],
                           ),
                         ),
