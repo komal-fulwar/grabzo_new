@@ -20,8 +20,11 @@ class _ProductInfoState extends State<ProductInfo> {
   _ProductInfoState(this._id);
   int _id;
   var _item;
+  int _qty;
+
   void initState() {
     super.initState();
+    _qty = 1;
     _item = Items().getItem(_id);
   }
 
@@ -131,7 +134,13 @@ class _ProductInfoState extends State<ProductInfo> {
                           child: Row(
                             children: [
                               InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    setState(() {
+                                      if (_qty > 1) {
+                                        _qty = _qty - 1;
+                                      }
+                                    });
+                                  },
                                   child: Icon(
                                     Icons.remove,
                                     color: Colors.white,
@@ -139,18 +148,23 @@ class _ProductInfoState extends State<ProductInfo> {
                                   )),
                               Container(
                                 margin: EdgeInsets.symmetric(horizontal: 3),
-                                padding:
-                                EdgeInsets.symmetric(horizontal: 3, vertical: 2),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 3, vertical: 2),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(3),
                                     color: Colors.white),
                                 child: Text(
-                                  '0',
-                                  style: TextStyle(color: Colors.black, fontSize: 16),
+                                  _qty.toString(),
+                                  style: TextStyle(
+                                      color: Colors.black, fontSize: 16),
                                 ),
                               ),
                               InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    setState(() {
+                                      _qty = _qty + 1;
+                                    });
+                                  },
                                   child: Icon(
                                     Icons.add,
                                     color: Colors.white,
@@ -161,25 +175,24 @@ class _ProductInfoState extends State<ProductInfo> {
                         ),
                       ],
                     ),
-
                     SizedBox(
                       height: 12,
                     ),
-                    Text(
-                      "Lorem ipsum dolor sit amet, consectetur dip isicing elit, sed do eiusmod tempor inci didunt ut labore et dolore magna etroaliqua. Ut enim ad minim veniam.",
-                      softWrap: true,
-                      style: TextStyle(
-                        color: Color(0xff585858),
-                        fontSize: 15,
-                      ),
-                    ),
+                    // Text(
+                    //   "Lorem ipsum dolor sit amet, consectetur dip isicing elit, sed do eiusmod tempor inci didunt ut labore et dolore magna etroaliqua. Ut enim ad minim veniam.",
+                    //   softWrap: true,
+                    //   style: TextStyle(
+                    //     color: Color(0xff585858),
+                    //     fontSize: 15,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
               GestureDetector(
                 onTap: () {
                   Items()
-                      .addToCart(data.itemId, data.itemPrice, 1)
+                      .addToCart(data.itemId, data.itemPrice, _qty)
                       .then((value) => {
                             if (value)
                               {
