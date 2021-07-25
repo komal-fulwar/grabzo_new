@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:grabzo/constant/constants.dart';
+import 'package:grabzo/model/OrdersBean.dart';
 import 'package:grabzo/model/ProfilBean.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -137,5 +138,23 @@ class Profile {
     prefs.remove("wholesale");
     var token = prefs.getString('token');
     print("AFTER LOGOUT Token : $token");
+  }
+
+  Future<OrdersBean> getOrders() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String url = Constants.apiUrl + "/order/get_orders";
+    Map<String, String> headers = {
+      "Accept": "application/json",
+      "Authorization": "Bearer $token"
+    };
+    print(token);
+    Response response = await get(url, headers: headers);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> map = jsonDecode(response.body);
+      return OrdersBean.fromJson(map);
+    } else {
+      return null;
+    }
   }
 }

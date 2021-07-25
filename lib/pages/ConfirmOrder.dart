@@ -2,7 +2,7 @@ import 'package:grabzo/Theme2/colors.dart';
 import 'package:grabzo/pages/HomePage.dart';
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'my_orders.dart';
+import 'MyOrders.dart';
 
 class ConfirmOrderPage extends StatefulWidget {
   @override

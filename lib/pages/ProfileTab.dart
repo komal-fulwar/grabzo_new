@@ -7,7 +7,7 @@ import 'package:grabzo/Theme2/colors.dart';
 import 'package:grabzo/pages/MyAccount.dart';
 import 'package:grabzo/pages/ProfileMenu.dart';
 
-import 'my_orders.dart';
+import 'MyOrders.dart';
 
 class ProfileTab extends StatefulWidget {
   @override
