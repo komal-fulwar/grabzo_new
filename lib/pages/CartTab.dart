@@ -260,18 +260,27 @@ class _CartTabState extends State<CartTab> {
         body: Center(
           child: Column(
             children: [
-              Image.asset(
-                'assets/emptycart.png',
-                scale: 3,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 150.0 ),
+                child: Column(
+                  children: [
+                    Image.asset(
+                      'assets/emptycart.png',
+                      scale: 3,
+                    ),
+                    Text(
+                      "Your Cart Is Empty",
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle1
+                          .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+
               ),
-              Text(
-                "Your Cart Is Empty",
-                textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle1
-                    .copyWith(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
+
             ],
           ),
         ));
