@@ -1,3 +1,4 @@
+import 'package:grabzo/pages/SeeAllCategoryItem.dart';
 import 'package:grabzo/pages/SeeAllShops.dart';
 import 'package:flutter/material.dart';
 import 'package:grabzo/model/CategoriesBean.dart';
@@ -36,7 +37,14 @@ class _CatgoriesState extends State<Catgories> {
         children: <Widget>[
           for (var cat in data.categories)
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SeeAllCategoryItem(cat.categoryId),
+                  ),
+                );
+              },
               child: Column(
                 children: <Widget>[
                   Container(
