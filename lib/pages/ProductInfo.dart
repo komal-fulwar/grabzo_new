@@ -56,8 +56,11 @@ class _ProductInfoState extends State<ProductInfo> {
                 children: [
                   //Container(),
                   FadedScaleAnimation(
-                    Image.asset("assets/ProductImages/lady finger.png",
-                        fit: BoxFit.fill),
+                    (data.itemImage != null && data.itemImage != "")
+                        ? Image.network(Constants.url + data.itemImage,
+                            fit: BoxFit.fill)
+                        : Image.asset("assets/ProductImages/lady finger.png",
+                            fit: BoxFit.fill),
                   ),
                   Positioned.directional(
                       textDirection: Directionality.of(context),
@@ -134,7 +137,8 @@ class _ProductInfoState extends State<ProductInfo> {
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(left:10.0, right: 10.0),
+                                padding: const EdgeInsets.only(
+                                    left: 10.0, right: 10.0),
                                 child: InkWell(
                                     onTap: () {
                                       setState(() {
@@ -163,7 +167,8 @@ class _ProductInfoState extends State<ProductInfo> {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left:10.0, right: 10.0),
+                                padding:
+                                    EdgeInsets.only(left: 10.0, right: 10.0),
                                 child: InkWell(
                                     onTap: () {
                                       setState(() {

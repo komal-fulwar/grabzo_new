@@ -78,11 +78,17 @@ class _SeeAllState extends State<SeeAll> {
                             Align(
                               alignment: Alignment.centerLeft,
                               child: Center(
-                                  child: Image.asset(
-                                'assets/images/popular_foods/ic_popular_food_1.png',
-                                width: 130,
-                                height: 140,
-                              )),
+                                  child: (item.itemImage != null &&
+                                          item.itemImage != "")
+                                      ? Image.network(
+                                          Constants.url + item.itemImage,
+                                          width: 130,
+                                          height: 140)
+                                      : Image.asset(
+                                          'assets/images/popular_foods/ic_popular_food_1.png',
+                                          width: 130,
+                                          height: 140,
+                                        )),
                             )
                           ],
                         ),

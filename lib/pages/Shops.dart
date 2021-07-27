@@ -1,3 +1,4 @@
+import 'package:grabzo/constant/constants.dart';
 import 'package:grabzo/model/ShopsBean.dart';
 import 'package:grabzo/pages/SeeAllShopItems.dart';
 import 'package:grabzo/pages/SeeAllShops.dart';
@@ -45,7 +46,7 @@ class Shops extends StatelessWidget {
             children: [
               for (var shop in data.shops)
                 SpecialOfferCard(
-                  image: "assets/images/bestfood/ic_best_food_1.jpeg",
+                  image: shop.shopImage,
                   category: shop.shopName,
                   address: shop.shopAddress,
                   press: () {
@@ -93,10 +94,12 @@ class SpecialOfferCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Stack(
               children: [
-                Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                ),
+                (image != null && image != "")
+                    ? Image.network(Constants.url + image, fit: BoxFit.cover)
+                    : Image.asset(
+                        "assets/images/bestfood/ic_best_food_1.jpeg",
+                        fit: BoxFit.cover,
+                      ),
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(

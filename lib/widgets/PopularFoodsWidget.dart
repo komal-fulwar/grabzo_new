@@ -78,11 +78,14 @@ class PopularFoodTiles extends StatelessWidget {
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Center(
-                                child: Image.asset(
-                              'assets/images/popular_foods/ic_popular_food_1.png',
-                              width: 130,
-                              height: 140,
-                            )),
+                                child: (imageUrl != null && imageUrl != "")
+                                    ? Image.network(Constants.url + imageUrl,
+                                        width: 130, height: 140)
+                                    : Image.asset(
+                                        'assets/images/popular_foods/ic_popular_food_1.png',
+                                        width: 130,
+                                        height: 140,
+                                      )),
                           )
                         ],
                       ),
@@ -200,7 +203,7 @@ class PopularFoodItems extends StatelessWidget {
                   for (var item in snapshot.data.items)
                     PopularFoodTiles(
                         name: item.itemName,
-                        imageUrl: "ic_popular_food_1",
+                        imageUrl: item.itemImage,
                         price: item.itemPrice.toString(),
                         id: item.itemId),
                 ],

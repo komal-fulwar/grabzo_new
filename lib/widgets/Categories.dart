@@ -34,7 +34,6 @@ class _CatgoriesState extends State<Catgories> {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: <Widget>[
-
           for (var cat in data.categories)
             InkWell(
               onTap: () {},
@@ -62,11 +61,17 @@ class _CatgoriesState extends State<Catgories> {
                           width: 50,
                           height: 50,
                           child: Center(
-                              child: Image.asset(
-                            'assets/images/topmenu/' + "ic_burger" + ".png",
-                            width: 24,
-                            height: 24,
-                          )),
+                              child: (cat.categoryImageUrl != null &&
+                                      cat.categoryImageUrl != "")
+                                  ? Image.network(cat.categoryImageUrl,
+                                      width: 24, height: 24)
+                                  : Image.asset(
+                                      'assets/images/topmenu/' +
+                                          "ic_burger" +
+                                          ".png",
+                                      width: 24,
+                                      height: 24,
+                                    )),
                         )),
                   ),
                   Text(cat.categoryName,
@@ -78,7 +83,7 @@ class _CatgoriesState extends State<Catgories> {
               ),
             ),
           Padding(
-            padding: const EdgeInsets.only(bottom:30.0),
+            padding: const EdgeInsets.only(bottom: 30.0),
             child: IconButton(
               icon: const Icon(Icons.add_circle_outline_sharp),
               color: Colors.grey,
@@ -88,7 +93,6 @@ class _CatgoriesState extends State<Catgories> {
           ),
         ],
       ),
-
     );
   }
 }
