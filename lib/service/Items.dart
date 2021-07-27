@@ -198,4 +198,22 @@ class Items {
       return false;
     }
   }
+
+  Future<ItemsBean> getAllCategoryItems(int id) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String token = prefs.getString("token");
+    String url = Constants.apiUrl + "category/$id/items";
+    Map<String, String> headers = {
+      "Accept": "application/json",
+      "Authorization": "Bearer $token"
+    };
+
+    Response response = await get(url, headers: headers);
+    if (response.statusCode == 200) {
+      Map<String, dynamic> map = jsonDecode(response.body);
+      return ItemsBean.fromJson(map);
+    } else {
+      return null;
+    }
+  }
 }
