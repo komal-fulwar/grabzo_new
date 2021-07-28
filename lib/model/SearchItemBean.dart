@@ -7,6 +7,7 @@ class SearchItemBean {
 
   SearchItemBean.fromJson(Map<String, dynamic> json) {
     if (json['search'] != null) {
+      // ignore: deprecated_member_use
       search = new List<ItemBean>();
       json['search'].forEach((v) {
         search.add(new ItemBean.fromJson(v));

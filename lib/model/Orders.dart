@@ -27,6 +27,7 @@ class Orders {
     orderTotal = json['order_total'];
     orderDatetime = json['order_datetime'];
     if (json['order_items'] != null) {
+      // ignore: deprecated_member_use
       orderItems = new List<OrderItems>();
       json['order_items'].forEach((v) {
         orderItems.add(new OrderItems.fromJson(v));

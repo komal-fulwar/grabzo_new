@@ -23,6 +23,7 @@ class ShopBean {
     shopImage = json['shop_image'];
     shopAddress = json['shop_address'];
     if (json['items'] != null) {
+      // ignore: deprecated_member_use
       items = new List<ItemBean>();
       json['items'].forEach((v) {
         items.add(ItemBean.fromJson(v));

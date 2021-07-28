@@ -15,10 +15,17 @@ class CartTab extends StatefulWidget {
 }
 
 class _CartTabState extends State<CartTab> {
+  var _getCart;
+  @override
+  void initState() {
+    super.initState();
+    _getCart = Items().getCart();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Items().getCart(),
+        future: _getCart,
         builder: (BuildContext context, AsyncSnapshot<CartBean> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -79,10 +86,18 @@ class _CartTabState extends State<CartTab> {
                             ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: FadedScaleAnimation(
-                                  Image.asset(
-                                    "assets/ProductImages/lady finger.png",
-                                    height: 95,
-                                  ),
+                                  (data.cartItems[index].itemImage != null &&
+                                          data.cartItems[index].itemImage != "")
+                                      ? Image.network(
+                                          Constants.url +
+                                              data.cartItems[index].itemImage,
+                                          width: 130,
+                                          height: 140)
+                                      : Image.asset(
+                                          'assets/images/popular_foods/ic_popular_food_1.png',
+                                          width: 130,
+                                          height: 140,
+                                        ),
                                 )),
                             SizedBox(
                               width: 15,
@@ -261,7 +276,7 @@ class _CartTabState extends State<CartTab> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 150.0 ),
+                padding: const EdgeInsets.symmetric(vertical: 150.0),
                 child: Column(
                   children: [
                     Image.asset(
@@ -278,9 +293,7 @@ class _CartTabState extends State<CartTab> {
                     ),
                   ],
                 ),
-
               ),
-
             ],
           ),
         ));

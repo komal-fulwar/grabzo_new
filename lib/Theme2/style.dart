@@ -10,6 +10,7 @@ final ThemeData appTheme = ThemeData(
   dividerColor: Color(0xffacacac),
   disabledColor: kDisabledColor,
   buttonColor: kMainColor,
+  // ignore: deprecated_member_use
   cursorColor: kMainColor,
   indicatorColor: kMainColor,
   accentColor: kMainColor,

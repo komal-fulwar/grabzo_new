@@ -7,6 +7,7 @@ class CategoriesBean {
 
   CategoriesBean.fromJson(Map<String, dynamic> json) {
     if (json['categories'] != null) {
+      // ignore: deprecated_member_use
       categories = new List<CategoryBean>();
       json['categories'].forEach((v) {
         categories.add(new CategoryBean.fromJson(v));

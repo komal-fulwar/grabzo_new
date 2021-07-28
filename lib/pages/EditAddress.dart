@@ -66,6 +66,7 @@ class _EditAddressState extends State<EditAddress> {
                     ),
                     TextFormField(
                       controller: _street1,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'Street 1',
@@ -87,6 +88,7 @@ class _EditAddressState extends State<EditAddress> {
                     ),
                     TextFormField(
                       controller: _street2,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'Street 2',
@@ -108,6 +110,7 @@ class _EditAddressState extends State<EditAddress> {
                     ),
                     TextFormField(
                       controller: _landmark,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'Landmark',
@@ -129,6 +132,7 @@ class _EditAddressState extends State<EditAddress> {
                     ),
                     TextFormField(
                       controller: _city,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'City',
@@ -150,6 +154,7 @@ class _EditAddressState extends State<EditAddress> {
                     ),
                     TextFormField(
                       controller: _state,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'State',
@@ -171,6 +176,7 @@ class _EditAddressState extends State<EditAddress> {
                     ),
                     TextFormField(
                       controller: _country,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'Country',
@@ -192,6 +198,7 @@ class _EditAddressState extends State<EditAddress> {
                     ),
                     TextFormField(
                       controller: _pin,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'Pincode',

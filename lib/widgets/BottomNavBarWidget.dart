@@ -22,6 +22,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
+          // ignore: deprecated_member_use
           title: Text(
             'Home',
             style: TextStyle(color: Color(0xFF2c2b2b)),
@@ -29,6 +30,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.card_giftcard),
+          // ignore: deprecated_member_use
           title: Text(
             'Cart',
             style: TextStyle(color: Color(0xFF2c2b2b)),
@@ -36,6 +38,7 @@ class _BottomNavBarWidgetState extends State<BottomNavBarWidget> {
         ),
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.user),
+          // ignore: deprecated_member_use
           title: Text(
             'Account',
             style: TextStyle(color: Color(0xFF2c2b2b)),

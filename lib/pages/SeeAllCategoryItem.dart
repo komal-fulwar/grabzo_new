@@ -15,10 +15,15 @@ class SeeAllCategoryItem extends StatefulWidget {
 class _SeeAllCategoryItemState extends State<SeeAllCategoryItem> {
   _SeeAllCategoryItemState(this._catId);
   int _catId;
+  var _getAllCategoryItems;
+  void initState() {
+    super.initState();
+    _getAllCategoryItems = Items().getAllCategoryItems(_catId);
+  }
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Items().getAllCategoryItems(_catId),
+        future: _getAllCategoryItems ,
         builder: (BuildContext context, AsyncSnapshot<ItemsBean> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -43,7 +48,8 @@ class _SeeAllCategoryItemState extends State<SeeAllCategoryItem> {
             },
           ),
           elevation: 0,
-          title: Text("Category Name",
+          title: Text(
+              (null != data.items) ? data.items[0].categoryName : "Catagory",
               style: TextStyle(
                 color: Color(0xff000000),
               )),

@@ -5,13 +5,14 @@ import 'package:flutter/material.dart';
 //app theme
 final ThemeData appTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
-  fontFamily:'ProductSans',
+  fontFamily: 'ProductSans',
   backgroundColor: Colors.black,
-  primaryColor:  Color (0xFF39c526),
+  primaryColor: Color(0xFF39c526),
   bottomAppBarColor: Colors.white,
   dividerColor: Color(0xffacacac),
   disabledColor: Color(0xff616161),
   buttonColor: Color(0xffFF9900),
+  // ignore: deprecated_member_use
   cursorColor: Color(0xffFF9900),
   indicatorColor: Color(0xffFF9900),
   accentColor: Color(0xffFF9900),
@@ -29,13 +30,14 @@ final ThemeData appTheme = ThemeData(
     bodyText1: TextStyle(color: Colors.white, fontSize: 18),
     bodyText2: TextStyle(),
     subtitle1: TextStyle(fontWeight: FontWeight.w500, fontSize: 17),
-    subtitle2: TextStyle(color: Colors.grey[500],fontWeight: FontWeight.w400),
+    subtitle2: TextStyle(color: Colors.grey[500], fontWeight: FontWeight.w400),
     headline3: TextStyle(fontSize: 20),
     headline5: TextStyle(fontWeight: FontWeight.bold),
     headline6: TextStyle(color: Color(0xff747474)),
     caption: TextStyle(),
     overline: TextStyle(),
-    button: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
+    button: TextStyle(
+        fontSize: 18, color: Colors.white, fontWeight: FontWeight.w500),
   ),
 );
 

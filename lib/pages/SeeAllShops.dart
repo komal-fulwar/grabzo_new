@@ -9,10 +9,16 @@ class SeeAllShops extends StatefulWidget {
 }
 
 class _SeeAllShopsState extends State<SeeAllShops> {
+  var _getAllShop;
+  void initState() {
+    super.initState();
+    _getAllShop = Items().getAllShops();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Items().getAllShops(),
+        future: _getAllShop,
         builder: (BuildContext context, AsyncSnapshot<ShopsBean> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());

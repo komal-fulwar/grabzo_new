@@ -7,6 +7,7 @@ class ShopsBean {
 
   ShopsBean.fromJson(Map<String, dynamic> json) {
     if (json['shops'] != null) {
+      // ignore: deprecated_member_use
       shops = new List<ShopBean>();
       json['shops'].forEach((v) {
         shops.add(new ShopBean.fromJson(v));

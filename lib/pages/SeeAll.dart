@@ -10,10 +10,16 @@ class SeeAll extends StatefulWidget {
 }
 
 class _SeeAllState extends State<SeeAll> {
+  var _getAllItems;
+  void initState() {
+    super.initState();
+    _getAllItems = Items().getAllItems();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Items().getAllItems(),
+        future: _getAllItems,
         builder: (BuildContext context, AsyncSnapshot<ItemsBean> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());

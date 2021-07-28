@@ -21,6 +21,7 @@ class _AddAddressState extends State<AddAddress> {
           ),
         ),
         actions: [
+          // ignore: deprecated_member_use
           FlatButton(
               onPressed: () {},
               child: Text(

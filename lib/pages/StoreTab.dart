@@ -2,7 +2,7 @@ import 'package:grabzo/pages/Shops.dart';
 import 'package:flutter/material.dart';
 import 'package:grabzo/animation/ScaleRoute.dart';
 import 'package:grabzo/pages/SignInPage.dart';
-import 'package:grabzo/widgets/PopularFoodsWidget.dart';
+import 'package:grabzo/widgets/AllItemsWidget.dart';
 import 'package:grabzo/widgets/SearchWidget.dart';
 import 'package:grabzo/widgets/Categories.dart';
 
@@ -42,15 +42,11 @@ class _StoreTabState extends State<StoreTab> {
           children: <Widget>[
             SearchWidget(),
             Catgories(),
-
             Shops(),
             Divider(
               color: Colors.white,
             ),
-            PopularFoodsWidget(),
-            // PopularFoodsWidget(),
-
-            // BestFoodWidget(),
+            AllItemsWidget(),
           ],
         ),
       ),

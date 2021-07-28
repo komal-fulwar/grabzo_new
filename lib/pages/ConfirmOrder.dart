@@ -108,6 +108,7 @@ class _ConfirmOrderPageState extends State<ConfirmOrderPage> {
                     letterSpacing: 0.2,
                     fontSize: 14)),
             Spacer(),
+            // ignore: deprecated_member_use
             FlatButton(
                 onPressed: () {
                   Navigator.push(context,

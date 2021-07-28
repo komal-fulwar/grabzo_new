@@ -17,10 +17,16 @@ class _SeeAllShopItemsState extends State<SeeAllShopItems> {
   _SeeAllShopItemsState(this._shopId, this._shopName);
   int _shopId;
   String _shopName;
+  var _getAllShopItems;
+  void initState() {
+    super.initState();
+    _getAllShopItems = Items().getAllShopsItems(_shopId);
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Items().getAllShopsItems(_shopId),
+        future: _getAllShopItems,
         builder: (BuildContext context, AsyncSnapshot<ShopBean> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());

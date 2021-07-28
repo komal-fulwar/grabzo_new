@@ -3,6 +3,8 @@ class ItemBean {
   String itemName;
   int itemPrice;
   String itemImage;
+  int categoryId;
+  String categoryName;
   int shopId;
   String shopName;
   String shopAbout;
@@ -13,6 +15,8 @@ class ItemBean {
       this.itemName,
       this.itemPrice,
       this.itemImage,
+      this.categoryId,
+      this.categoryName,
       this.shopId,
       this.shopName,
       this.shopAbout,
@@ -23,6 +27,8 @@ class ItemBean {
     itemName = json['item_name'];
     itemPrice = json['item_price'];
     itemImage = json['item_image'];
+    categoryId = json['category_id'];
+    categoryName = json['category_name'];
     shopId = json['shop_id'];
     shopName = json['shop_name'];
     shopAbout = json['shop_about'];
@@ -35,6 +41,8 @@ class ItemBean {
     data['item_name'] = this.itemName;
     data['item_price'] = this.itemPrice;
     data['item_image'] = this.itemImage;
+    data['category_id'] = this.categoryId;
+    data['category_name'] = this.categoryName;
     data['shop_id'] = this.shopId;
     data['shop_name'] = this.shopName;
     data['shop_about'] = this.shopAbout;

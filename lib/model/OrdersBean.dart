@@ -7,6 +7,7 @@ class OrdersBean {
 
   OrdersBean.fromJson(Map<String, dynamic> json) {
     if (json['orders'] != null) {
+      // ignore: deprecated_member_use
       orders = new List<Orders>();
       json['orders'].forEach((v) {
         orders.add(new Orders.fromJson(v));

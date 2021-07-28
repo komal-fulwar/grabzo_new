@@ -9,7 +9,6 @@ import 'package:grabzo/model/ShopBean.dart';
 import 'package:grabzo/model/ShopsBean.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
 class Items {
   Future<ItemsBean> getAllItems() async {

@@ -11,6 +11,7 @@ class CartBean {
     cartCount = json['cart_count'];
     cartTotal = json['cart_total'];
     if (json['cart_items'] != null) {
+      // ignore: deprecated_member_use
       cartItems = new List<CartItems>();
       json['cart_items'].forEach((v) {
         cartItems.add(new CartItems.fromJson(v));
@@ -37,6 +38,7 @@ class CartItems {
   int itemId;
   String itemName;
   int itemPrice;
+  String itemImage;
 
   CartItems(
       {this.cartItemId,
@@ -44,7 +46,8 @@ class CartItems {
       this.cartItemTotalPrice,
       this.itemId,
       this.itemName,
-      this.itemPrice});
+      this.itemPrice,
+      this.itemImage});
 
   CartItems.fromJson(Map<String, dynamic> json) {
     cartItemId = json['cart_item_id'];
@@ -53,6 +56,7 @@ class CartItems {
     itemId = json['item_id'];
     itemName = json['item_name'];
     itemPrice = json['item_price'];
+    itemImage = json['item_image'];
   }
 
   Map<String, dynamic> toJson() {
@@ -63,6 +67,7 @@ class CartItems {
     data['item_id'] = this.itemId;
     data['item_name'] = this.itemName;
     data['item_price'] = this.itemPrice;
+    data['item_image'] = this.itemImage;
     return data;
   }
 }

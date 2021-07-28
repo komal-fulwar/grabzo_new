@@ -1,8 +1,6 @@
 import 'package:grabzo/pages/SeeAllCategoryItem.dart';
-import 'package:grabzo/pages/SeeAllShops.dart';
 import 'package:flutter/material.dart';
 import 'package:grabzo/model/CategoriesBean.dart';
-import 'package:grabzo/model/CategoryBean.dart';
 import 'package:grabzo/service/Items.dart';
 
 class Catgories extends StatefulWidget {
@@ -11,10 +9,16 @@ class Catgories extends StatefulWidget {
 }
 
 class _CatgoriesState extends State<Catgories> {
+  var _getAllCategory;
+  void initState() {
+    super.initState();
+    _getAllCategory = Items().getAllCategory();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Items().getAllCategory(),
+        future: _getAllCategory,
         builder:
             (BuildContext context, AsyncSnapshot<CategoriesBean> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

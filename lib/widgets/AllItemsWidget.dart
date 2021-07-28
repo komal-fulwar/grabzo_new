@@ -6,12 +6,19 @@ import 'package:grabzo/pages/ProductInfo.dart';
 import 'package:grabzo/pages/SeeAll.dart';
 import 'package:grabzo/constant/constants.dart';
 
-class PopularFoodsWidget extends StatefulWidget {
+class AllItemsWidget extends StatefulWidget {
   @override
-  _PopularFoodsWidgetState createState() => _PopularFoodsWidgetState();
+  _AllItemsWidgetState createState() => _AllItemsWidgetState();
 }
 
-class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
+class _AllItemsWidgetState extends State<AllItemsWidget> {
+  var _allItems;
+  @override
+  void initState() {
+    super.initState();
+    _allItems = Items().getAllItems();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,9 +26,9 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
       width: double.infinity,
       child: Column(
         children: <Widget>[
-          PopularFoodTitle(),
+          ItemsTitle(),
           Expanded(
-            child: PopularFoodItems(),
+            child: PopularFoodItems(_allItems),
           )
         ],
       ),
@@ -29,13 +36,13 @@ class _PopularFoodsWidgetState extends State<PopularFoodsWidget> {
   }
 }
 
-class PopularFoodTiles extends StatelessWidget {
+class ItemsTiles extends StatelessWidget {
   final String name;
   final String imageUrl;
   final String price;
   final int id;
 
-  PopularFoodTiles(
+  ItemsTiles(
       {Key key,
       @required this.name,
       @required this.imageUrl,
@@ -150,7 +157,7 @@ class PopularFoodTiles extends StatelessWidget {
   }
 }
 
-class PopularFoodTitle extends StatelessWidget {
+class ItemsTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -159,7 +166,7 @@ class PopularFoodTitle extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
-            "Popluar Foods",
+            "Items",
             style: TextStyle(
                 fontSize: 18,
                 color: Color(0xff000000),
@@ -186,10 +193,13 @@ class PopularFoodTitle extends StatelessWidget {
 }
 
 class PopularFoodItems extends StatelessWidget {
+  final allItems;
+  PopularFoodItems(this.allItems);
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Items().getAllItems(),
+        future: allItems,
         builder: (BuildContext context, AsyncSnapshot<ItemsBean> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -201,7 +211,7 @@ class PopularFoodItems extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 children: <Widget>[
                   for (var item in snapshot.data.items)
-                    PopularFoodTiles(
+                    ItemsTiles(
                         name: item.itemName,
                         imageUrl: item.itemImage,
                         price: item.itemPrice.toString(),
@@ -211,26 +221,5 @@ class PopularFoodItems extends StatelessWidget {
             }
           }
         });
-
-    //     ListView(
-    //   scrollDirection: Axis.horizontal,
-    //   children: <Widget>[
-    //     PopularFoodTiles(
-    //         name: "Fried Egg",
-    //         imageUrl: "ic_popular_food_1",
-    //         price: '15.06',
-    //         id: "0"),
-    //     PopularFoodTiles(
-    //         name: "Mixed Vegetable",
-    //         imageUrl: "ic_popular_food_3",
-    //         price: "17.03",
-    //         id: "1"),
-    //     PopularFoodTiles(
-    //         name: "Fried Egg",
-    //         imageUrl: "ic_popular_food_1",
-    //         price: '15.06',
-    //         id: "2"),
-    //   ],
-    // );
   }
 }

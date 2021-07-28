@@ -59,6 +59,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                     TextFormField(
                       controller: _name,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'Full Name',
@@ -80,6 +81,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                     TextFormField(
                       controller: _email,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'Email Address',
@@ -101,6 +103,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                     TextFormField(
                       controller: _number,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'Phone Number',
@@ -122,6 +125,7 @@ class _EditProfileState extends State<EditProfile> {
                     ),
                     TextFormField(
                       controller: _password,
+                      // ignore: deprecated_member_use
                       cursorColor: Theme.of(context).cursorColor,
                       decoration: InputDecoration(
                         labelText: 'Password',
