@@ -326,23 +326,53 @@ class SignInButtonWidget extends StatelessWidget {
             ),
           ),
           onPressed: () => {
-                name = firstName.text + " " + lastName.text,
-                Profile()
-                    .register(name, email.text, number.text, password.text)
-                    .then((value) => {
-                          (value)
-                              ? Navigator.pushReplacement(
-                                  context,
-                                  PageTransition(
-                                      type: PageTransitionType.rightToLeft,
-                                      child: SignInPage()))
-                              : Fluttertoast.showToast(
-                                  msg: "Error User not Created ",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.BOTTOM,
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.white)
-                        })
+                if (firstName.text.length == 0)
+                  {
+                    Fluttertoast.showToast(
+                        msg: "First Name is Blank",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white)
+                  }
+                else if (number.text.length < 10)
+                  {
+                    Fluttertoast.showToast(
+                        msg: "Number is not valid",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white)
+                  }
+                else if (!email.text.contains("@"))
+                  {
+                    Fluttertoast.showToast(
+                        msg: "Email is not valid",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white)
+                  }
+                else
+                  {
+                    name = firstName.text + " " + lastName.text,
+                    Profile()
+                        .register(name, email.text, number.text, password.text)
+                        .then((value) => {
+                              (value)
+                                  ? Navigator.pushReplacement(
+                                      context,
+                                      PageTransition(
+                                          type: PageTransitionType.rightToLeft,
+                                          child: SignInPage()))
+                                  : Fluttertoast.showToast(
+                                      msg: "Error User not Created",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white)
+                            })
+                  }
               }),
     );
   }
