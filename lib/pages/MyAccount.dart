@@ -159,7 +159,8 @@ class _MyAccountState extends State<MyAccount> {
                           icon: const Icon(Icons.edit),
                           color: Color(0xff686868),
                           onPressed: () {
-                            var method = (null == data.address.street1)
+                            var method = (null == data.address ||
+                                    null == data.address.street1)
                                 ? "put"
                                 : "patch";
                             Navigator.push(

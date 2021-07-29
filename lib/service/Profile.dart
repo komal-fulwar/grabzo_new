@@ -6,16 +6,21 @@ import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile {
-  Future<dynamic> register(
+  Future<bool> register(
       String name, String email, String mobileNum, String password) async {
     String url = Constants.apiUrl + "user/sign_up";
     Map<String, String> headers = {"Content-type": "application/json"};
 
     String json =
-        """{"user": { "name": "$name", "email": "$email", "password": "$password", "phone_number": "$mobileNum"}}""";
+        """ { "name": "$name", "email": "$email", "password": "$password", "phone_number": "$mobileNum"}""";
 
     Response response = await post(url, headers: headers, body: json);
-    return jsonDecode(response.body);
+
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   Future<dynamic> signIn(String email, String password) async {
