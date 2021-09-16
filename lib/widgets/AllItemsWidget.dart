@@ -207,17 +207,21 @@ class PopularFoodItems extends StatelessWidget {
             if (snapshot.hasError)
               return Center(child: Text('Error: ${snapshot.error}'));
             else {
-              return ListView(
-                scrollDirection: Axis.horizontal,
-                children: <Widget>[
-                  for (var item in snapshot.data.items)
-                    ItemsTiles(
-                        name: item.itemName,
-                        imageUrl: item.itemImage,
-                        price: item.itemPrice.toString(),
-                        id: item.itemId),
-                ],
-              );
+              if (snapshot.data == null) {
+                return Text('All Item has no Data');
+              } else {
+                return ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: <Widget>[
+                    for (var item in snapshot.data.items)
+                      ItemsTiles(
+                          name: item.itemName,
+                          imageUrl: item.itemImage,
+                          price: item.itemPrice.toString(),
+                          id: item.itemId),
+                  ],
+                );
+              }
             }
           }
         });

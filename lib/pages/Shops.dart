@@ -21,7 +21,11 @@ class Shops extends StatelessWidget {
             if (snapshot.hasError)
               return Center(child: Text('Error: ${snapshot.error}'));
             else {
-              return shopColumn(context, snapshot.data);
+              if (snapshot.data == null) {
+                return Text('Shop Data NULL');
+              } else {
+                return shopColumn(context, snapshot.data);
+              }
             }
           }
         });
